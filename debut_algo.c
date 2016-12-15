@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 17:24:30 by jorobin           #+#    #+#             */
-/*   Updated: 2016/12/15 18:13:34 by jorobin          ###   ########.fr       */
+/*   Updated: 2016/12/15 18:17:29 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 //Le tetriminos place sera le plus en haut et a gauche possible.
 //Il faut donc:
 //- une fonction qui check la position initiale du tetriminos qu'on testera dans
-//la fonction test de la meilleure position 
+//la fonction test de la meilleure position sauf pour le carre 
 //- une fonction qui change la position du tetriminos
 //- une fonction qui trouve la meilleure position du tetriminos (moins d'espace etc)
 //- une fonction de placement du tetriminos au "carre" et qui passera au tetriminos suivant
