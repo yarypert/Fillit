@@ -6,14 +6,14 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 16:54:01 by yarypert          #+#    #+#             */
-/*   Updated: 2016/12/15 22:50:43 by yarypert         ###   ########.fr       */
+/*   Updated: 2016/12/15 22:52:03 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 //si ya que des '.' et '#' et '\n' XX
 //si ya pas plus de 4 lignes XX 
-//si ya 4 '# XX'
+//si ya 4 '#' XX
 //si ya 4 charac par ligne XX
 //si ya 8 ou 6 "liens" XX
 //si ya des '/n' entre chaque piece
