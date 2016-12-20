@@ -24,16 +24,15 @@
 //- une fonction qui trouve la meilleure position du tetriminos (moins d'espace etc)
 //- une fonction de placement du tetriminos au "carre" et qui passera au tetriminos suivant
 //jusqu'a ce qu'il n'y ai plus de tetriminos (fin du fichier ouvert)
-//- ma bite
-#include "libft.h"
+//- ma bit
 
-#define BUF_SIZE 20
+#include "fillit.h"
 
 int		main(int argc, char **argv)
 {
 	int		fd;
 	int		ret; //pour le retour de read (nb d'octets lus ou -1 en cas d'erreur)
-	char	str[BUF_SIZE + 1];
+	char	str[BUF_SIZE];
 
 	if (argc == 2)
 	{
@@ -43,15 +42,17 @@ int		main(int argc, char **argv)
 			ft_putstr("open failed\n");
 			return (1);
 		}
-		while (ret = read(fd, &str, BUF_SIZE))//le fichier est stocke dans buf
+		while ((ret = read(fd, &str, BUF_SIZE)))//le fichier est stocke dans buf
 		{
-			str[ret] = '\0';
-			if (check_tetri(str) == 1)
+			str[20] = '\0';
+			if (check_final(str) != 0)
+				{
+				write(2, "error\n", 6);
 				return (1);
-			//ft_algo(str);
+				}
+			//t_algo(str);
 			// put all fonctions here PD
 			ft_strclr(str);
-			ret++;
 		}
 		if (close(fd) == -1)
 		{
@@ -61,7 +62,9 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	write(2, "error\n", 6);
+}
 
 char	*ft_send_tetri(char *str, int *i)
 {
+	return ("mes couilles");
 }

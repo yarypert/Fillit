@@ -10,12 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <unistd.h>
-#include "libft.h"
+#include "fillit.h"
 
 //si ya que des '.' et '#' et '\n' XX
 //si ya pas plus de 4 lignes XX 
@@ -96,11 +91,17 @@ int		check_lines(char *str)
 	return((count_hashtags == 4 && count_char == 16 && count_bn == 4) ? 0 : 1);
 }
 
-int		check_final(int a, int b, int c)
+int		check_final(char *str)
 {
+	int a;
+	int b;
+	int c;
+
+	a = check_char(str);
+	b = check_links(str);
+	c = check_lines(str);
 	return((a == 0 && b == 0 && c == 0) ? 0 : 1);
 }
-
 
 /*
    int		main(int argc, char **argv)
