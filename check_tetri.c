@@ -15,7 +15,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "Libft/libft.h"
+#include "libft.h"
 
 //si ya que des '.' et '#' et '\n' XX
 //si ya pas plus de 4 lignes XX 
@@ -23,7 +23,6 @@
 //si ya 4 charac par ligne XX
 //si ya 8 ou 6 "liens" XX
 //si ya des '/n' entre chaque piece
-
 
 int		check_char(char *str)
 {
@@ -97,22 +96,30 @@ int		check_lines(char *str)
 	return((count_hashtags == 4 && count_char == 16 && count_bn == 4) ? 0 : 1);
 }
 
-int		main(int argc, char **argv)
+int		check_final(int a, int b, int c)
 {
-	int		fd;
-	int		ret;
-	char	*str;
-	if (argc != 2)
-	{
-		write(2, "error\n", 6);
-	}
-	if (argc == 2)
-	{
-		fd = open(argv[1], O_RDONLY);
-		ret = read(fd, &str, 20);
-
-		close(fd);
-	}
-	printf("%d", ret);
-	return (0);
+	return((a == 0 && b == 0 && c == 0) ? 0 : 1);
 }
+
+
+/*
+   int		main(int argc, char **argv)
+   {
+   int		fd;
+   int		ret;
+   char	*str;
+   if (argc != 2)
+   {
+   write(2, "error\n", 6);
+   }
+   if (argc == 2)
+   {
+   fd = open(argv[1], O_RDONLY);
+   ret = read(fd, &str, 20);
+
+   close(fd);
+   }
+   printf("%d", ret);
+   return (0);
+   }
+   */
