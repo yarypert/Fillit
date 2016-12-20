@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 17:21:44 by yarypert          #+#    #+#             */
-/*   Updated: 2016/12/16 17:21:47 by yarypert         ###   ########.fr       */
+/*   Updated: 2016/12/20 15:51:33 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "libft/libft.h"
+#include "Libft/libft.h"
 
 //si ya que des '.' et '#' et '\n' XX
 //si ya pas plus de 4 lignes XX 
@@ -100,7 +100,6 @@ int		check_lines(char *str)
 int		main(int argc, char **argv)
 {
 	int		fd;
-	int i = 0;
 	int		ret;
 	char	*str;
 	if (argc != 2)
@@ -111,7 +110,6 @@ int		main(int argc, char **argv)
 	{
 		fd = open(argv[1], O_RDONLY);
 		ret = read(fd, &str, 20);
-		ft_putstr(str);
 
 		close(fd);
 	}
