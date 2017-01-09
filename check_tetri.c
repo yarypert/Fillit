@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 17:21:44 by yarypert          #+#    #+#             */
-/*   Updated: 2016/12/20 15:51:33 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/09 15:03:23 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,36 +91,41 @@ int		check_lines(char *str)
 	return((count_hashtags == 4 && count_char == 16 && count_bn == 4) ? 0 : 1);
 }
 
+int		check_last_bn(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n' && str[i + 1] == '\n' && str[i + 2] == '\0')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int		check_final(char *str)
 {
 	int a;
 	int b;
 	int c;
+	int d;
 
 	a = check_char(str);
 	b = check_links(str);
 	c = check_lines(str);
+	d = check_last_bn(str);
+	
+	printf("check_char = ");
+	printf("%d\n", a);
+	printf("check_links = ");
+	printf("%d\n", b);
+	printf("check_lines = ");
+	printf("%d\n", c);
+	printf("check_last_bn = ");
+	printf("%d\n\n", d);
+
+
 	return((a == 0 && b == 0 && c == 0) ? 0 : 1);
 }
-
-/*
-   int		main(int argc, char **argv)
-   {
-   int		fd;
-   int		ret;
-   char	*str;
-   if (argc != 2)
-   {
-   write(2, "error\n", 6);
-   }
-   if (argc == 2)
-   {
-   fd = open(argv[1], O_RDONLY);
-   ret = read(fd, &str, 20);
-
-   close(fd);
-   }
-   printf("%d", ret);
-   return (0);
-   }
-   */
