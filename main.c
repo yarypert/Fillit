@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 17:24:30 by jorobin           #+#    #+#             */
-/*   Updated: 2017/01/09 15:32:14 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/09 17:26:26 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@
 //jusqu'a ce qu'il n'y ai plus de tetriminos (fin du fichier ouvert)
 //- ma bit
 
+
+//pas de str[20] = '\0'
+
+
+
 #include "fillit.h"
 
 int		main(int argc, char **argv)
@@ -33,6 +38,7 @@ int		main(int argc, char **argv)
 	int		fd;
 	int		ret; //pour le retour de read (nb d'octets lus ou -1 en cas d'erreur)
 	char	str[BUF_SIZE];
+	int		flag;
 
 	if (argc == 2)
 	{
@@ -43,19 +49,30 @@ int		main(int argc, char **argv)
 			return (1);
 		}
 
-
-		while ((ret = read(fd, &str, BUF_SIZE)))//le fichier est stocke dans buf
+	flag = 0;
+		while ((ret = read(fd, &str, BUF_SIZE)) >= 20)//le fichier est stocke dans buf
 		{
-			//str[20] = '\0';
 			if (check_final(str) != 0)
 				{
 				write(2, "error\n", 6);
 				return (1);
 				}
-			ft_putstr(str);
-			//t_algo(str);
-			// put all fonctions here PD
-			ft_strclr(str);
+
+			//FONCTION D'ENCULE QUIAJOUTE TOUTES LES PIECES DANS LA LISTE CHAINEES DE PD'
+			//strdup maison
+
+			if (ret == 20)
+				flag = 1;
+			else if (str[20] != '\n')
+			{
+				write(2, "error\n", 6);
+				return (0);
+			}
+		}
+		if (flag != 1 || ret != 0)
+		{
+			write(2, "error\n", 6);
+			return (1);
 		}
 		if (close(fd) == -1)
 		{
@@ -65,9 +82,4 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	write(2, "error\n", 6);
-}
-
-char	*ft_send_tetri(char *str, int *i)
-{
-	return ("mes couilles");
 }
