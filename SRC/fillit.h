@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 16:21:55 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/14 20:14:38 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/14 22:07:38 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,19 @@
 # include <stdio.h>
 # include <unistd.h>
 # include "../libft/libft.h"
-# define BUF_SIZE 21
+# define BUFF_SIZE 21
 
 typedef struct		s_tetri
 {
 	char *tetri;
-	int x;
-	int y;
+	int x1;
+	int y1;
+	int x2;
+	int	y2;
+	int x3;
+	int y3;
+	int x4;
+	int y4;
 	struct s_tetri *next;
 }					t_tetri;
 

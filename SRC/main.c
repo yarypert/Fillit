@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debut_algo.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/15 17:24:30 by jorobin           #+#    #+#             */
-/*   Updated: 2017/01/14 20:27:38 by yarypert         ###   ########.fr       */
+/*   Created: 2017/01/14 22:06:44 by yarypert          #+#    #+#             */
+/*   Updated: 2017/01/14 22:08:20 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,13 @@
 //jusqu'a ce qu'il n'y ai plus de tetriminos (fin du fichier ouvert)
 //- ma bit
 
-
-//pas de str[20] = '\0'
-
-
-
 #include "fillit.h"
 
 int		main(int argc, char **argv)
 {
 	int		fd;
 	int		ret; //pour le retour de read (nb d'octets lus ou -1 en cas d'erreur)
-	char	str[BUF_SIZE];
+	char	str[BUFF_SIZE];
 	int		flag;
 
 	if (argc == 2)
@@ -50,7 +45,7 @@ int		main(int argc, char **argv)
 		}
 
 	flag = 0;
-		while ((ret = read(fd, &str, BUF_SIZE)) >= 20)//le fichier est stocke dans buf
+		while ((ret = read(fd, &str, BUFF_SIZE)) >= 20)//le fichier est stocke dans buf
 		{
 			if (check_final(str) != 0)
 				{
