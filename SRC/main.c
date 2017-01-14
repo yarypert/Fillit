@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 17:24:30 by jorobin           #+#    #+#             */
-/*   Updated: 2017/01/14 18:40:14 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/14 20:27:38 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,24 +54,22 @@ int		main(int argc, char **argv)
 		{
 			if (check_final(str) != 0)
 				{
-				write(2, "error\n", 6);
+				ft_putstr("error\n");
 				return (1);
 				}
-				//FONCTION D'ENCULE QUIAJOUTE TOUTES LES PIECES DANS LA LISTE CHAINEES DE PD'
-		//strdup maison
 			if (ret == 20)
 				flag = 1;
 			else if (str[20] != '\n')
 			{
-				write(2, "error\n", 6);
+				ft_putstr("error\n");
 				return (1);
 			}
 			str[20] = '\0';
-			print_list(add_to_list(str));
+			add_to_list(str);
 		}
 		if (flag != 1 || ret != 0)
 		{
-			write(2, "error\n", 6);
+			ft_putstr("error\n");
 			return (1);
 		}
 		if (close(fd) == -1)
@@ -79,8 +77,8 @@ int		main(int argc, char **argv)
 			ft_putstr("close failed\n");
 			return (1);
 		}
-		printf("OK\n");
+		ft_putstr("OK\n");
 		return (0);
 	}
-	write(2, "error\n", 6);
+	ft_putstr("error\n");
 }
