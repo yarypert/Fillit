@@ -6,7 +6,7 @@
 #    By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/06 00:55:05 by yarypert          #+#    #+#              #
-#    Updated: 2017/01/11 14:54:28 by yarypert         ###   ########.fr        #
+#    Updated: 2017/01/14 19:58:50 by yarypert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ FLAG = -Wall -Wextra -Werror
 
 SRC_PATH = ./SRC/
 
-SRC = $(SRC_PATH)main.c $(SRC_PATH)parse.c $(SRC_PATH)libft.a
+SRC = $(SRC_PATH)main.c $(SRC_PATH)parse.c $(SRC_PATH)libft.a $(SRC_PATH)add_to_list.c
 
 OBJ = ${SRC:c=o}
 

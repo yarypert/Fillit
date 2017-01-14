@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 18:15:21 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/11 19:59:22 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/14 18:36:00 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void print_list(t_tetri *start)
 	}
 }
 
-	t_tetri *create_maillons(char *str)
+	t_tetri *add_to_list(char *str)
 {
 	t_tetri *start;
 
@@ -35,7 +35,6 @@ void print_list(t_tetri *start)
 	start->next = NULL;
 	return start;
 }
-
 /*
 int main(int argc, char **argv)
 {
@@ -44,11 +43,11 @@ int main(int argc, char **argv)
 	t_tetri *head;
 	int i = 1;
 
-	start = create_maillons("lolelol");
+	start = add_to_list("lolelol");
 	tmp = start; 
 	while(i < argc)
 	{
-		tmp->next = create_maillons(argv[i]);
+		tmp->next = add_to_list(argv[i]);
 		tmp = tmp->next;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 17:21:44 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/11 14:24:04 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/14 19:56:49 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,22 @@
 //si ya 4 charac par ligne XX
 //si ya 8 ou 6 "liens" XX
 //si ya des '/n' entre chaque piece
+
+int check_five_char(char *str)
+{
+	int i;
+
+	i = 0;
+	while (i < 20)
+	{
+		if( str[4] != '\n' || str[9] != '\n' || str[14] != '\n' || str[19] != '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+
 
 int		check_char(char *str)
 {
@@ -96,9 +112,11 @@ int		check_final(char *str)
 	int a;
 	int b;
 	int c;
+	int d;
 
 	a = check_char(str);
 	b = check_links(str);
 	c = check_lines(str);
-	return((a == 0 && b == 0 && c == 0) ? 0 : 1);
+	d = check_five_char(str);
+	return((a == 0 && b == 0 && c == 0 && d == 0) ? 0 : 1);
 }

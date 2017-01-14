@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 17:24:30 by jorobin           #+#    #+#             */
-/*   Updated: 2017/01/11 19:08:20 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/14 18:40:14 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,8 @@ int		main(int argc, char **argv)
 				write(2, "error\n", 6);
 				return (1);
 				}
-
-			//FONCTION D'ENCULE QUIAJOUTE TOUTES LES PIECES DANS LA LISTE CHAINEES DE PD'
-			//strdup maison
-
+				//FONCTION D'ENCULE QUIAJOUTE TOUTES LES PIECES DANS LA LISTE CHAINEES DE PD'
+		//strdup maison
 			if (ret == 20)
 				flag = 1;
 			else if (str[20] != '\n')
@@ -68,6 +66,8 @@ int		main(int argc, char **argv)
 				write(2, "error\n", 6);
 				return (1);
 			}
+			str[20] = '\0';
+			print_list(add_to_list(str));
 		}
 		if (flag != 1 || ret != 0)
 		{
