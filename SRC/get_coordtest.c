@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   place_tetri.c                                      :+:      :+:    :+:   */
+/*   get_coordtest.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/14 20:54:18 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/18 21:00:28 by yarypert         ###   ########.fr       */
+/*   Created: 2017/01/18 21:01:32 by yarypert          #+#    #+#             */
+/*   Updated: 2017/01/18 21:04:57 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//fonction de recuperation de la position , ranger la position dans la liste
-//
-//creer la map vide
-//
-//placer dans la map			|
-//								|
-//passer a la piece suivante	|  repeter n fois;
-//
-// EN CAS d'erreur : repartir de 0, placer differement;
-//
-// SI AUCUNE SOLUTION NE PASSE : augmentaer la taille de map
-//
-// recommencer
-//
-//
+#include "fillit.h"
 
-int		place_tetri(char *grid, t_tetri list)
+int get_coord(t_tetri coord)
 {
+	int i;
+
+	i = 0;
 	
+	while (coord.tetri[i])
+	{
+		if (coord.tetri[i] == '#')
+	}
+	
+}
+		i++;
+	}
+	return(0);
 }
