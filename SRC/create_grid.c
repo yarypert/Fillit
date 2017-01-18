@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   place_tetri.c                                      :+:      :+:    :+:   */
+/*   create_grid.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/14 20:54:18 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/18 15:56:20 by yarypert         ###   ########.fr       */
+/*   Created: 2017/01/18 15:56:38 by yarypert          #+#    #+#             */
+/*   Updated: 2017/01/18 20:31:19 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
+#include "fillit.h"
 
-//fonction de recuperation de la position , ranger la position dans la liste
-//
-//creer la map vide
-//
-//placer dans la map			|
-//								|
-//passer a la piece suivante	|  repeter n fois;
-//
-// EN CAS d'erreur : repartir de 0, placer differement;
-//
-// SI AUCUNE SOLUTION NE PASSE : augmentaer la taille de map
-//
-// recommencer
-//
-//
-
-int		place_tetri()
+char *create_grid(int val)
 {
+	int i;
+	int j;
+	int k;
+	char *grid;
+	size_t size;
+	
+	size = ((3 + val) * (2 + val));
+	j = 1;
+	i = 0;
+	grid = malloc(sizeof((char)(size)));
+	ft_memset( (void *)grid, 46 ,size);
+	grid[size] = '\0';
 
+	while (j != 3 + val)
+	{
+		k = ((3 * j) + (val * j) - 1);
+		grid[k] = '\n';
+		j++;
+	}
+	return (grid);
 }
