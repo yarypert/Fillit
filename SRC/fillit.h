@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 16:21:55 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/14 22:07:38 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/18 15:57:16 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,7 @@
 typedef struct		s_tetri
 {
 	char *tetri;
-	int x1;
-	int y1;
-	int x2;
-	int	y2;
-	int x3;
-	int y3;
-	int x4;
-	int y4;
+	char coord[7];
 	struct s_tetri *next;
 }					t_tetri;
 
