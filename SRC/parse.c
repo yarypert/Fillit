@@ -106,10 +106,11 @@ int		check_final(char *str)
 	int b;
 	int c;
 	int d;
+	bool ret;
 
 	a = check_char(str);
 	b = check_links(str);
 	c = check_lines(str);
 	d = check_five_char(str);
-	return((a == 0 && b == 0 && c == 0 && d == 0) ? 0 : 1);
+	ret =((a == 0 && b == 0 && c == 0 && d == 0) ? 0 : 1);
 }

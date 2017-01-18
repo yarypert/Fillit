@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 22:06:44 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/18 15:27:31 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/18 20:45:57 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		main(int argc, char **argv)
 	char	str[BUFF_SIZE];
 	int		flag;
 
+	flag = 0;
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
@@ -44,14 +45,13 @@ int		main(int argc, char **argv)
 			return (1);
 		}
 
-	flag = 0;
 		while ((ret = read(fd, &str, BUFF_SIZE)) >= 20)//le fichier est stocke dans buf
 		{
 			if (check_final(str) != 0)
-				{
+			{
 				ft_putstr("error\n");
 				return (1);
-				}
+			}
 			if (ret == 20)
 				flag = 1;
 			else if (str[20] != '\n')
