@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 16:02:30 by jorobin           #+#    #+#             */
-/*   Updated: 2017/01/18 16:04:04 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/01/18 16:18:40 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_tetri		get_coord(t_tetri	list)
 {
-	char	tabxy[4];
 	int		i;
 	int		j;
 	int		x;
