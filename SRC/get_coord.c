@@ -6,13 +6,13 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 15:02:02 by jorobin           #+#    #+#             */
-/*   Updated: 2017/01/18 15:17:11 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/01/18 15:22:16 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	*find_x_y(char *str)
+t_tetri		find_x_y(t_tetri	list)
 {
 	char	tabxy[4];
 	int		i;
@@ -22,15 +22,15 @@ char	*find_x_y(char *str)
 	i = 0;
 	y = 0;
 	x = 0;
-	while (str[i] != '\0')
+	while (list.tetri[i] != '\0')
 	{
 		while (pieces != 4)
-			while (str[i] != '\n')
+			while (list.tetri[i] != '\n')
 			{
-				if (str[i] == '#')
+				if (list.tetri[i] == '#')
 				{
-					x1 = x;
-					y1 = y;
+					list.x1 = x;
+					list.y1 = y;
 					x++;
 				}
 				i++;
