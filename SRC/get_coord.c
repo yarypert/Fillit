@@ -42,18 +42,18 @@ t_tetri		get_coord(t_tetri	list, t_var var)
 		return (list);
 	else 
 	{
-		list.coord = (ft_adjust(var.xmin, list.coord));
+		ft_adjust(var.xmin, &list);
 		return (list);
 	}
 }
 
-t_tetri		ft_adjust(int xmin, int *list, t_tetri wesh)
+void	ft_adjust(int xmin, t_tetri *list)
 {
-	if (xmin < list[0])
-		list[0] = list[0] - xmin;
-		list[2] = list[2] - xmin;
-		list[4] = list[4] - xmin;
-		list[6] = list[6] - xmin;
-	wesh.coord = list;
-	return (wesh);
+	if (xmin < list->coord[0])
+	{
+		list->coord[0] = list->coord[0] - xmin;
+		list->coord[2] = list->coord[2] - xmin;
+		list->coord[4] = list->coord[4] - xmin;
+		list->coord[6] = list->coord[6] - xmin;
+	}
 }

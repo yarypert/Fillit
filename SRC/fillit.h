@@ -37,7 +37,7 @@ typedef struct		s_var
 	int		ymin;
 }					t_var;
 
-int		*ft_adjust(int xmin,int *list);
+void	ft_adjust(int xmin,t_tetri *list);
 int		check_char(char *str);
 int		check_links(char *str);
 int		check_lines(char *str);
