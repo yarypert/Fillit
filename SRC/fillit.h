@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 16:21:55 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/23 10:22:29 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/23 14:05:52 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct		s_var
 	int		ymin;
 }					t_var;
 
-void		ft_adjust(int xmin,t_tetri *list);
+void		ft_adjust(int xmin, int ymin, t_tetri *list);
 int			check_char(char *str);
 int			check_links(char *str);
 int			check_lines(char *str);
