@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 16:02:30 by jorobin           #+#    #+#             */
-/*   Updated: 2017/01/18 20:55:58 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/23 03:51:18 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,19 @@ void	ft_adjust(int xmin, t_tetri *list)
 		list->coord[4] = list->coord[4] - xmin;
 		list->coord[6] = list->coord[6] - xmin;
 	}
+}
+
+
+int main(void)
+{
+	t_tetri list;
+	t_var var;
+
+	list.tetri = "#...\n#...\n#...\n#...\n";
+	list = get_coord(list, var);
+	printf("%s%d%s%d\n","X1 = ", list.coord[0], " et Y1 = ", list.coord[1]);
+	printf("%s%d%s%d\n","X2 = ", list.coord[2], " et Y2 = ", list.coord[3]);
+	printf("%s%d%s%d\n","X3 = ", list.coord[4], " et Y3 = ", list.coord[5]);
+	printf("%s%d%s%d\n","X4 = ", list.coord[6], " et Y4 = ", list.coord[7]);
+	return 0;
 }

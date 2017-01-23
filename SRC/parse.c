@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 17:21:44 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/14 20:13:32 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/23 06:33:12 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,10 @@ int		check_final(char *str)
 	int b;
 	int c;
 	int d;
-	bool ret;
 
 	a = check_char(str);
 	b = check_links(str);
 	c = check_lines(str);
 	d = check_five_char(str);
-	ret =((a == 0 && b == 0 && c == 0 && d == 0) ? 0 : 1);
+	return ((a == 0 && b == 0 && c == 0 && d == 0) ? 0 : 1);
 }

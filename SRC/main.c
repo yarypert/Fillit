@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 22:06:44 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/18 20:45:57 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/23 10:22:37 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ int		main(int argc, char **argv)
 	int		ret; //pour le retour de read (nb d'octets lus ou -1 en cas d'erreur)
 	char	str[BUFF_SIZE];
 	int		flag;
+	int		piece;
 
+	piece = 0;
 	flag = 0;
 	if (argc == 2)
 	{
@@ -61,6 +63,8 @@ int		main(int argc, char **argv)
 			}
 			str[20] = '\0';
 			add_to_list(str);
+			piece++;
+			printf("%d\n", piece);
 		}
 		if (flag != 1 || ret != 0)
 		{
@@ -73,6 +77,9 @@ int		main(int argc, char **argv)
 			return (1);
 		}
 		ft_putstr("OK\n");
+		printf("%s\n",create_grid(piece));
+
+
 		return (0);
 	}
 	ft_putstr("error\n");

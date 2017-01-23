@@ -6,12 +6,10 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 18:15:21 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/14 20:28:39 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/23 07:17:40 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "fillit.h"
 /*
 void print_list(t_tetri *start)
