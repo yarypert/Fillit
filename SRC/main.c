@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 22:06:44 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/23 10:22:37 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/23 13:55:08 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int		main(int argc, char **argv)
 			ft_putstr("open failed\n");
 			return (1);
 		}
-
 		while ((ret = read(fd, &str, BUFF_SIZE)) >= 20)//le fichier est stocke dans buf
 		{
 			if (check_final(str) != 0)
@@ -64,8 +63,8 @@ int		main(int argc, char **argv)
 			str[20] = '\0';
 			add_to_list(str);
 			piece++;
-			printf("%d\n", piece);
 		}
+		printf("%s%d%s\n","il y a ", piece, " pieces");
 		if (flag != 1 || ret != 0)
 		{
 			ft_putstr("error\n");
@@ -77,9 +76,8 @@ int		main(int argc, char **argv)
 			return (1);
 		}
 		ft_putstr("OK\n");
-		printf("%s\n",create_grid(piece));
-
-
+		ft_putstr("grille minimale necessaire\n");
+		printf("%s\n", create_grid(piece));
 		return (0);
 	}
 	ft_putstr("error\n");
