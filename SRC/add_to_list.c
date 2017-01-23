@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 18:15:21 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/23 07:17:40 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/23 13:48:36 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void print_list(t_tetri *start)
 	start->tetri = malloc(sizeof(char) * (ft_strlen(str) + 1));
 	ft_strcpy(start->tetri, str);
 	start->next = NULL;
+	printf("%s\n",start->tetri);
 	return (start);
 }
 /*
