@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 16:02:30 by jorobin           #+#    #+#             */
-/*   Updated: 2017/01/23 11:46:44 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/01/23 12:00:46 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ t_tetri		get_coord(t_tetri	list, t_var var)
 	var.y = 0;
 	var.x = 0;
 
+while (list.tetri[var.i] != '\0')
+{
 	while (list.tetri[var.i] != '\n')
 	{
 		if (list.tetri[var.i] == '#')
@@ -34,7 +36,8 @@ t_tetri		get_coord(t_tetri	list, t_var var)
 	var.i++;
 	var.y++;
 	var.x = 0;
-	var.j = 0;
+	var.j++;
+}
 	if (var.xmin == list.coord[var.j])
 		return (list);
 	else 
@@ -61,7 +64,7 @@ int main(void)
 	t_tetri list;
 	t_var var;
 
-	list.tetri = "#...\n#...\n#...\n#...\n";
+	list.tetri = "#...\n.#..\n#...\n#...\n";
 	list = get_coord(list, var);
 	printf("%s%d%s%d\n","X1 = ", list.coord[0], " et Y1 = ", list.coord[1]);
 	printf("%s%d%s%d\n","X2 = ", list.coord[2], " et Y2 = ", list.coord[3]);
