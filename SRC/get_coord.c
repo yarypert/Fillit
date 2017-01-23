@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 16:02:30 by jorobin           #+#    #+#             */
-/*   Updated: 2017/01/23 03:51:18 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/23 11:46:44 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,22 @@ t_tetri		get_coord(t_tetri	list, t_var var)
 	var.y = 0;
 	var.x = 0;
 
-	while (list.tetri[var.i] != '\0')
+	while (list.tetri[var.i] != '\n')
 	{
-		while (list.tetri[var.i] != '\n')
+		if (list.tetri[var.i] == '#')
 		{
-			if (list.tetri[var.i] == '#')
-			{
-				list.coord[var.j] = var.x;
-				list.coord[var.j + 1] = var.y;
-				if (var.xmin == 0 || var.xmin > var.x)
-					var.xmin = var.x;
-				var.j++;
-			}
-			var.i++;
-			var.x++;
+			list.coord[var.j] = var.x;
+			list.coord[var.j + 1] = var.y;
+			if (var.xmin == 0 || var.xmin > var.x)
+				var.xmin = var.x;
+			var.j++;
 		}
 		var.i++;
-		var.y++;
-		var.x = 0;
+		var.x++;
 	}
+	var.i++;
+	var.y++;
+	var.x = 0;
 	var.j = 0;
 	if (var.xmin == list.coord[var.j])
 		return (list);
