@@ -35,6 +35,7 @@ int		main(int argc, char **argv)
 	char	str[BUFF_SIZE];
 	int		flag;
 	int		piece;
+	char	*grid;
 
 	piece = 0;
 	flag = 0;
@@ -64,6 +65,7 @@ int		main(int argc, char **argv)
 			add_to_list(str);
 			piece++;
 		}
+		grid = (create_grid(piece));
 		printf("%s%d%s\n","il y a ", piece, " pieces");
 		if (flag != 1 || ret != 0)
 		{
@@ -77,7 +79,7 @@ int		main(int argc, char **argv)
 		}
 		ft_putstr("OK\n");
 		ft_putstr("grille minimale necessaire\n");
-		printf("%s\n", create_grid(piece));
+		printf("%s\n", grid);
 		return (0);
 	}
 	ft_putstr("error\n");

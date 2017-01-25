@@ -41,7 +41,6 @@ int	get_val(int piece)
 char *create_grid(int piece)
 {
 	int val;
-	int i;
 	int j;
 	int k;
 	char *grid;
@@ -50,7 +49,6 @@ char *create_grid(int piece)
 	val = get_val(piece);
 	size = ((3 + val) * (2 + val));
 	j = 1;
-	i = 0;
 	grid = malloc(sizeof((char)(size)));
 	ft_memset((void *)grid, 46 ,size);
 	grid[size] = '\0';
