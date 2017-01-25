@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 22:06:44 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/25 14:26:52 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/01/25 19:37:24 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,57 +30,9 @@
 
 int		main(int argc, char **argv)
 {
-	int		fd;
-	int		ret; //pour le retour de read (nb d'octets lus ou -1 en cas d'erreur)
-	char	str[BUFF_SIZE];
-	int		flag;
-	int		piece;
-	t_tetri		*list;
-
-	piece = 0;
-	flag = 0;
 	if (argc == 2)
-	{
-		fd = open(argv[1], O_RDONLY);
-		if (fd == -1)
-		{
-			ft_putstr("open failed\n");
-			return (1);
-		}
-		while ((ret = read(fd, &str, BUFF_SIZE)) >= 20)//le fichier est stocke dans buf
-		{
-			if (check_final(str) != 0)
-			{
-				ft_putstr("error\n");
-				return (1);
-			}
-			if (ret == 20)
-				flag = 1;
-			else if (str[20] != '\n')
-			{
-				ft_putstr("error\n");
-				return (1);
-			}
-			str[20] = '\0';
-			list = add_to_list(str);
-			piece++;
-		}
-		printf("%s%d%s\n","il y a ", piece, " pieces");
-		ft_placement(piece, list);
-		if (flag != 1 || ret != 0)
-		{
-			ft_putstr("error\n");
-			return (1);
-		}
-		if (close(fd) == -1)
-		{
-			ft_putstr("close failed\n");
-			return (1);
-		}
-		ft_putstr("OK\n");
-		ft_putstr("grille minimale necessaire\n");
-		printf("%s\n", create_grid(piece));
-		return (0);
-	}
-	ft_putstr("error\n");
+		ft_read(argv);
+	else
+		ft_putstr("error\n");
+	return(1);
 }

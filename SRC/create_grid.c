@@ -6,13 +6,13 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 15:56:38 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/23 13:55:06 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/25 19:55:05 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../Includes/fillit.h"
 
-int	get_val(int piece)
+int		get_val(int piece)
 {
 	if (piece == 1)
 		return (0);
@@ -38,21 +38,20 @@ int	get_val(int piece)
 		return (-1);
 }
 
-char *create_grid(int piece)
+char	*create_grid(int piece)
 {
-	int val;
-	int j;
-	int k;
-	char *grid;
-	size_t size;
+	int		val;
+	int		j;
+	int		k;
+	char	*grid;
+	size_t	size;
 
 	val = get_val(piece);
 	size = ((3 + val) * (2 + val));
 	j = 1;
-	grid = malloc(sizeof((char)(size)));
-	ft_memset((void *)grid, 46 ,size);
-	grid[size] = '\0';
-
+	grid = malloc(sizeof(char) * (size));
+	ft_memset((void *)grid, 46, size);
+	grid[size - 1] = '\0';
 	while (j != 3 + val)
 	{
 		k = ((3 * j) + (val * j) - 1);

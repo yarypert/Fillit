@@ -6,7 +6,7 @@
 #    By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/06 00:55:05 by yarypert          #+#    #+#              #
-#    Updated: 2017/01/23 12:39:58 by yarypert         ###   ########.fr        #
+#    Updated: 2017/01/25 18:33:41 by yarypert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ SRC_PATH = ./SRC/
 
 INC_PATH = ./Includes/
 
-SRC = $(SRC_PATH)main.c $(SRC_PATH)parse.c $(SRC_PATH)add_to_list.c $(SRC_PATH)create_grid.c $(SRC_PATH)get_coord.c
+SRC = $(SRC_PATH)main.c $(SRC_PATH)parse.c $(SRC_PATH)add_to_list.c $(SRC_PATH)create_grid.c $(SRC_PATH)get_coord.c $(SRC_PATH)ft_read.c
 
-OBJ = main.o parse.o add_to_list.o create_grid.o get_coord.o
+OBJ = main.o parse.o add_to_list.o create_grid.o get_coord.o ft_read.o
 
 Std = \0033[48;5;236m
 Blk = \0033[48;5;16m
@@ -41,7 +41,7 @@ all: $(NAME)
 
 $(NAME):
 	@gcc $(FLAG) -c $(SRC) -I $(INC_PATH)
-	@gcc $(OBJ) $(SRC_PATH)libft.a -I $(INC_PATH) -o $(NAME)
+	@gcc $(OBJ) ./libft/libft.a -I $(INC_PATH) -o $(NAME)
 	@mkdir tmp
 	@mv $(OBJ) tmp
 	@echo "$(Std)                                                            ""$(Std)                                        ""$(Std)                                                     "

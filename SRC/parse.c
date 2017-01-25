@@ -6,39 +6,29 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 17:21:44 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/23 06:33:12 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/25 19:41:10 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-//si ya que des '.' et '#' et '\n' XX
-//si ya pas plus de 4 lignes XX 
-//si ya 4 '#' XX
-//si ya 4 charac par ligne XX
-//si ya 8 ou 6 "liens" XX
-//si ya des '/n' entre chaque piece
-
-int check_five_char(char *str)
+int		check_five_char(char *str)
 {
-		if( str[4] != '\n' || str[9] != '\n' || str[14] != '\n' || str[19] != '\n')
-			return (1);
+	if (str[4] != '\n' || str[9] != '\n' || str[14] != '\n' ||
+			str[19] != '\n')
+		return (1);
 	return (0);
 }
 
-
-
 int		check_char(char *str)
 {
-	//TESTEE ET VALIDE
-	//ne contient que des '.' '#' et '\n'
 	int i;
 
 	i = 0;
 	while (i < 20)
 	{
 		if (str[i] != 46 && str[i] != 35 && str[i] != 10)
-			return(1);
+			return (1);
 		i++;
 	}
 	return (0);
@@ -46,8 +36,6 @@ int		check_char(char *str)
 
 int		check_links(char *str)
 {
-	// TESTEE ET VALIDE
-	//8 ou 6 liens
 	int i;
 	int count_links;
 
@@ -68,20 +56,15 @@ int		check_links(char *str)
 		}
 		i++;
 	}
-	return((count_links == 6 || count_links == 8) ? 0 : 1);
+	return ((count_links == 6 || count_links == 8) ? 0 : 1);
 }
 
-
-int		check_lines(char *str) 
+int		check_lines(char *str)
 {
-	// TESTEE ET VALIDE
-	// pas plus de 4 lignes
-	// pas plus de 4 charac par ligne
-	// pas plus de 4 '#'
 	int		count_bn;
 	int		count_char;
 	int		count_hashtags;
-	int i;
+	int		i;
 
 	i = 0;
 	count_hashtags = 0;
@@ -97,7 +80,7 @@ int		check_lines(char *str)
 			count_bn++;
 		i++;
 	}
-	return((count_hashtags == 4 && count_char == 16 && count_bn == 4) ? 0 : 1);
+	return ((count_hashtags == 4 && count_char == 16 && count_bn == 4) ? 0 : 1);
 }
 
 int		check_final(char *str)
