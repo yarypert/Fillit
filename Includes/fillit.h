@@ -45,5 +45,6 @@ int			check_final(char *str);
 void		print_list(t_tetri *start);
 t_tetri		*add_to_list(char *str);
 char		*create_grid(int piece);
+t_tetri		get_coord(t_tetri	list, t_var var);
 
 #endif

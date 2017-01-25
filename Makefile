@@ -16,9 +16,11 @@ FLAG = -Wall -Wextra -Werror
 
 SRC_PATH = ./SRC/
 
-SRC = $(SRC_PATH)main.c $(SRC_PATH)parse.c $(SRC_PATH)libft.a $(SRC_PATH)add_to_list.c $(SRC_PATH)create_grid.c
+INC_PATH = ./Includes/
 
-OBJ = ${SRC:c=o}
+SRC = $(SRC_PATH)main.c $(SRC_PATH)parse.c $(SRC_PATH)add_to_list.c $(SRC_PATH)create_grid.c $(SRC_PATH)get_coord.c
+
+OBJ = main.o parse.o add_to_list.o create_grid.o get_coord.o
 
 Std = \0033[48;5;236m
 Blk = \0033[48;5;16m
@@ -38,7 +40,10 @@ Skn = \0033[48;5;216m
 all: $(NAME)
 
 $(NAME):
-	@gcc $(FLAG) $(SRC) -o $(NAME)
+	@gcc $(FLAG) -c $(SRC) -I $(INC_PATH)
+	@gcc $(OBJ) $(SRC_PATH)libft.a -I $(INC_PATH) -o $(NAME)
+	@mkdir tmp
+	@mv $(OBJ) tmp
 	@echo "$(Std)                                                            ""$(Std)                                        ""$(Std)                                                     "
 	@echo "$(Std)                          $(Blk)                  $(Std)                ""$(Std)                                        ""$(Std)               $(Blk)                  $(Std)      $(Blk)  $(Std)            "
 	@echo "$(Std)                        $(Blk)  $(Bwn)                  $(Blk)  $(Std)              ""$(Std)                                        ""$(Std)             $(Blk)  $(Bwn)                  $(Blk)  $(Std)  $(Blk)  $(Gry)  $(Blk)  $(Std)          "
@@ -66,6 +71,9 @@ $(NAME):
 
 .PHONY: clean
 clean :
+	@rm -Rf tmp
+	@echo "$(Grn2)[✓] $(Wht2) Removed OBJ tmp file" $(NAME)
+
 
 fclean: clean
 	@rm -Rf $(NAME)
