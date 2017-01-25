@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 16:21:55 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/23 14:05:52 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/01/25 14:48:27 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ typedef struct		s_var
 }					t_var;
 
 void		ft_adjust(int xmin, int ymin, t_tetri *list);
+void		ft_placement(int nbpiece, t_tetri *list);
+char		*place_tetri(t_tetri *list, char *grid);
+int			check_place(t_tetri *list, char *grid);
 int			check_char(char *str);
 int			check_links(char *str);
 int			check_lines(char *str);

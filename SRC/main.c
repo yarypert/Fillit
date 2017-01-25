@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 22:06:44 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/23 13:55:08 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/25 14:26:52 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		main(int argc, char **argv)
 	char	str[BUFF_SIZE];
 	int		flag;
 	int		piece;
-	char	*grid;
+	t_tetri		*list;
 
 	piece = 0;
 	flag = 0;
@@ -62,11 +62,11 @@ int		main(int argc, char **argv)
 				return (1);
 			}
 			str[20] = '\0';
-			add_to_list(str);
+			list = add_to_list(str);
 			piece++;
 		}
-		grid = (create_grid(piece));
 		printf("%s%d%s\n","il y a ", piece, " pieces");
+		ft_placement(piece, list);
 		if (flag != 1 || ret != 0)
 		{
 			ft_putstr("error\n");
@@ -79,7 +79,7 @@ int		main(int argc, char **argv)
 		}
 		ft_putstr("OK\n");
 		ft_putstr("grille minimale necessaire\n");
-		printf("%s\n", grid);
+		printf("%s\n", create_grid(piece));
 		return (0);
 	}
 	ft_putstr("error\n");
