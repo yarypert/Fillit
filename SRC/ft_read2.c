@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 18:24:09 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/25 20:25:47 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/01/25 19:37:27 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int ft_read(char **argv)
 	char str[BUFF_SIZE];
 	int flag;
 	int piece;
-	t_tetri	*start;
 
 	piece = 0;
 	fd = open(argv[1], O_RDONLY);
@@ -61,6 +60,6 @@ int ft_read(char **argv)
 	ft_putstr("OK\n");
 	ft_putstr("grille minimale necessaire\n");
 	printf("%s\n", create_grid(piece));
-	ft_placement(piece, list);
+	//ft_placement(piece, *list);
 	return (0);
 }
