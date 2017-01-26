@@ -42,8 +42,7 @@ char	*place_tetri(t_tetri *list, char *grid)
 						
 					j = j + 2;
 				}
-				numx++;
-			}
+				numx++;}
 			numy++;
 		}
 		if ()
@@ -55,20 +54,35 @@ char	*place_tetri(t_tetri *list, char *grid)
 void	ft_placement(int nbpiece, t_tetri *list)
 {
 	t_var	*var;
-	//char	*grid;
+	char	*grid;
 	char	**tab;
+	int		i;
 
 	tab = (char**)malloc(sizeof(char*) * nbpiece + 1);
 	list->flag = 0;
 	var = malloc(sizeof(t_var));
-	/*grid*/ tab[0] = create_grid(nbpiece);
-	ft_putstr(tab[0]);
-	//tab[0] = grid;
-	//on essaye de placer le premier tetri
-	//si ca ne marche pas on revient en arriere
-	//si on peut pas aller en arriere on agrandit la grid
-	//et on reessaye
-	get_coord(*list, var);
-	list = list->next;
-	//place_tetri(list, grid);
+	tab[0] = create_grid(nbpiece);
+	tab[0] = grid;
+	i = 0;
+	while (tab[i] != NULL)
+	{
+		get_coord(*list, var);
+		//place_tetri(list, tab[i]);
+		if (//plus de placement possible)
+		{
+			if (i == 0)
+				//fonction pour agrandir la map de 1
+			else
+				tab[i] = tab[i - 1];
+		}
+		if (//placement reussi)
+		{
+			list = list->next;
+			i++;
+		}
+	}
+	//on cree un tableau qui va contenir chaque etapes de remplissage de la map, on va donc modifier chaque case de ce tableau a chaque placement de piece
+	//tab++ si le placement est correct, tab[i] = tab[i - 1], on place la piece actuelle
+	//si le placement est incorrect, on essaye autre part, si plus de possibilite on clear la tab et tab --,c'est donc placement incorrect pour celui d'avant,
+	//
 }
