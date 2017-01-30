@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 18:24:09 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/30 15:42:34 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/30 16:08:04 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int ft_read(char **argv)
 
 	printf("%s\n", create_grid(piece));
 	printf("%s\n", grid_1_up(piece));
-//A OPTIMISER POUR LA VITESSE
 
 /*
 //LOLELOLLOLWLOWLWOWLWOLW:IWOWIOWJKDPWJOWHJ
