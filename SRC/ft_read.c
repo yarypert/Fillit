@@ -6,11 +6,26 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 18:24:09 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/25 20:25:47 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/01/30 15:42:34 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+void	ft_print_list(t_tetri *start)
+{
+	t_tetri *tmp;
+
+	tmp = start;
+	while (tmp)
+	{
+		ft_putstr("piece numero: ");
+		ft_putnbr(tmp->index);
+		ft_putendl(" ");
+		ft_putendl(tmp->tetri);
+		tmp = tmp->next;
+	}
+}
 
 int ft_read(char **argv)
 {
@@ -19,11 +34,14 @@ int ft_read(char **argv)
 	char str[BUFF_SIZE];
 	int flag;
 	int piece;
-	t_tetri	*start;
 
+	t_tetri	*start;
+	t_tetri *tmp;
+
+	start = NULL;
 	piece = 0;
 	fd = open(argv[1], O_RDONLY);
-
+	tmp = NULL;
 	if (fd == -1)
 	{
 		ft_putstr("open failed\n");
@@ -44,9 +62,19 @@ int ft_read(char **argv)
 			return (1);
 		}
 		str[20] = '\0';
-		add_to_list(str);
+		if (piece == 0)
+		{
+			start = add_to_list(str, piece);
+			tmp = start;
+		}
+		else
+		{
+			tmp->next = add_to_list(str, piece);
+			tmp = tmp->next;
+		}
 		piece++;
 	}
+	ft_print_list(start);
 	printf("%s%d%s\n","il y a ", piece, " pieces");
 	if (flag != 1 || ret != 0)
 	{
@@ -60,7 +88,20 @@ int ft_read(char **argv)
 	}
 	ft_putstr("OK\n");
 	ft_putstr("grille minimale necessaire\n");
+
 	printf("%s\n", create_grid(piece));
-	ft_placement(piece, list);
+	printf("%s\n", grid_1_up(piece));
+//A OPTIMISER POUR LA VITESSE
+
+/*
+//LOLELOLLOLWLOWLWOWLWOLW:IWOWIOWJKDPWJOWHJ
+	if (grille pas assez grande)
+		grid_1_up(piece);
+	create_grid(piece);
+	//recursive;
+//skjfhskjvksjvhskuhvkshvshvkshvkshdhkgsjhshg
+*/
+
+	ft_placement(piece, start);
 	return (0);
 }

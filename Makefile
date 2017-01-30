@@ -6,7 +6,7 @@
 #    By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/06 00:55:05 by yarypert          #+#    #+#              #
-#    Updated: 2017/01/25 18:33:41 by yarypert         ###   ########.fr        #
+#    Updated: 2017/01/30 14:29:55 by yarypert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ SRC_PATH = ./SRC/
 
 INC_PATH = ./Includes/
 
-SRC = $(SRC_PATH)main.c $(SRC_PATH)parse.c $(SRC_PATH)add_to_list.c $(SRC_PATH)create_grid.c $(SRC_PATH)get_coord.c $(SRC_PATH)ft_read.c
+SRC = $(SRC_PATH)main.c $(SRC_PATH)parse.c $(SRC_PATH)add_to_list.c $(SRC_PATH)create_grid.c $(SRC_PATH)get_coord.c $(SRC_PATH)ft_read.c $(SRC_PATH)ft_placement.c
 
-OBJ = main.o parse.o add_to_list.o create_grid.o get_coord.o ft_read.o
+OBJ = main.o parse.o add_to_list.o create_grid.o get_coord.o ft_read.o ft_placement.o
 
 Std = \0033[48;5;236m
 Blk = \0033[48;5;16m
@@ -44,30 +44,7 @@ $(NAME):
 	@gcc $(OBJ) ./libft/libft.a -I $(INC_PATH) -o $(NAME)
 	@mkdir tmp
 	@mv $(OBJ) tmp
-	@echo "$(Std)                                                            ""$(Std)                                        ""$(Std)                                                     "
-	@echo "$(Std)                          $(Blk)                  $(Std)                ""$(Std)                                        ""$(Std)               $(Blk)                  $(Std)      $(Blk)  $(Std)            "
-	@echo "$(Std)                        $(Blk)  $(Bwn)                  $(Blk)  $(Std)              ""$(Std)                                        ""$(Std)             $(Blk)  $(Bwn)                  $(Blk)  $(Std)  $(Blk)  $(Gry)  $(Blk)  $(Std)          "
-	@echo "$(Std)                      $(Blk)  $(Bwn)                      $(Blk)  $(Std)            ""$(Std)                                        ""$(Std)           $(Blk)  $(Bwn)                      $(Blk)    $(Gry)    $(Blk)  $(Std)        "
-	@echo "$(Std)                    $(Blk)  $(Bwn)                          $(Blk)  $(Std)          ""$(Std)                                        ""$(Std)         $(Blk)  $(Bwn)                          $(Blk)    $(Gry)    $(Blk)  $(Std)      "
-	@echo "$(Std)                    $(Blk)  $(Bwn)                          $(Blk)  $(Std)          ""$(Std)                                        ""$(Std)         $(Blk)  $(Bwn)                          $(Blk)    $(Gry)    $(Blk)  $(Std)      "
-	@echo "$(Std)                    $(Blk)  $(Bwn)    $(Skn)      $(Bwn)      $(Skn)      $(Bwn)    $(Blk)  $(Std)          ""$(Std)                                        ""$(Std)         $(Blk)  $(Bwn)                          $(Blk)    $(Gry)    $(Blk)  $(Std)      "
-	@echo "$(Std)                    $(Blk)  $(Bwn)  $(Skn)                      $(Bwn)  $(Blk)  $(Std)          ""$(Std)                                        ""$(Std)         $(Blk)  $(Bwn)          $(Skn)      $(Bwn)          $(Blk)    $(Red)  $(Gry)    $(Blk)  $(Std)    "
-	@echo "$(Std)                    $(Blk)  $(Bwn)  $(Skn)                      $(Bwn)  $(Blk)  $(Std)          ""$(Std)                                        ""$(Std)         $(Blk)  $(Bwn)      $(Skn)              $(Bwn)      $(Blk)    $(Red)    $(Gry)  $(Blk)  $(Std)    "
-	@echo "$(Std)                    $(Blk)  $(Bwn)  $(Std)  $(Gry)    $(Wht)  $(Gry)  $(Std)  $(Gry)    $(Wht)  $(Gry)  $(Std)  $(Bwn)  $(Blk)  $(Std)          ""$(Std)                                        ""$(Std)         $(Blk)  $(Bwn)    $(Skn)  $(Wht)  $(Gry2)  $(Skn)      $(Gry2)  $(Wht)  $(Skn)  $(Bwn)    $(Blk)    $(Red)    $(Gry)  $(Blk)  $(Std)    "
-	@echo "$(Std)                    $(Blk)  $(Skn)    $(Gry)  $(Wht)  $(Gry)    $(Skn)  $(Gry)  $(Wht)  $(Gry)    $(Skn)    $(Blk)  $(Std)          ""$(Std)                                        ""$(Std)         $(Blk)  $(Bwn)    $(Skn)  $(Wht)  $(Gry2)  $(Skn)      $(Gry2)  $(Wht)  $(Skn)  $(Bwn)    $(Blk)    $(Red)  $(Gry)    $(Blk)  $(Std)    "
-	@echo "$(Std)      $(Blk)          $(Std)    $(Blk)  $(Skn)                          $(Blk)  $(Std)          ""$(Std)                                        ""$(Std)         $(Blk)  $(Bwn)    $(Skn)                  $(Bwn)    $(Blk)    $(Gry)      $(Blk)  $(Std)    "
-	@echo "$(Std)    $(Blk)  $(Red)          $(Blk)  $(Std)    $(Blk)  $(Bwn)                      $(Blk)  $(Std)            ""$(Std)                                        ""$(Std)         $(Blk)  $(Bwn)    $(Skn)                  $(Bwn)    $(Blk)    $(Red)  $(Gry)    $(Blk)  $(Std)    "
-	@echo "$(Std)  $(Blk)  $(Gry)  $(Red)      $(Gry)      $(Blk)  $(Std)    $(Blk)    $(Bwn)    $(Skn)      $(Bwn)    $(Blk)    $(Std)              ""$(Std)    $(Grn2)[✓] $(Wht2)Created Fillit executable       ""$(Std)         $(Blk)  $(Bwn)    $(Blk)  $(Skn)              $(Blk)  $(Bwn)    $(Blk)    $(Gry)      $(Blk)  $(Std)    "
-	@echo "$(Std)  $(Blk)  $(Gry)    $(Red)    $(Gry)      $(Blk)  $(Std)      $(Blk)                  $(Std)                ""$(Std)                                        ""$(Std)         $(Blk)  $(Bwn)    $(Blk)                  $(Bwn)    $(Blk)    $(Red)  $(Gry)    $(Blk)  $(Std)    "
-	@echo "$(Std)    $(Blk)  $(Gry)  $(Red)    $(Gry)    $(Blk)  $(Std)      $(Blk)      $(Grn)    $(Wht)  $(Grn)    $(Blk)      $(Std)              ""$(Std)                                        ""$(Std)           $(Blk)  $(Bwn)  $(Blk)    $(Pnk)  $(Skn)      $(Pnk)  $(Blk)    $(Bwn)  $(Blk)  $(Std)  $(Blk)  $(Gry)      $(Blk)  $(Std)    "
-	@echo "$(Std)    $(Blk)  $(Gry)  $(Red)  $(Gry)      $(Blk)  $(Std)      $(Blk)  $(Grn)  $(Blk)  $(Grn)    $(Wht)  $(Grn)    $(Blk)  $(Grn)  $(Blk)  $(Std)              ""$(Std)                                        ""$(Std)             $(Blk)  $(Pnk)  $(Blk)  $(Pnk)    $(Wht)  $(Pnk)    $(Blk)  $(Pnk)  $(Blk)  $(Std)    $(Blk)  $(Gry)      $(Blk)  $(Std)    "
-	@echo "$(Std)    $(Blk)    $(Gry)      $(Blk)            $(Skn)  $(Blk)  $(Grn)    $(Wht)  $(Grn)    $(Blk)  $(Skn)  $(Blk)            $(Std)    ""$(Std)                                        ""$(Std)    $(Blk)           $(Pnk)  $(Blk)  $(Pnk)    $(Wht)  $(Pnk)    $(Blk)  $(Pnk)  $(Blk)                $(Std)    "
-	@echo "$(Std)  $(Blk)  $(Bwn2)  $(Blk)  $(Gry)      $(Blk)  $(Bwn2)        $(Blk)  $(Skn)  $(Blk)  $(Grn)    $(Wht)  $(Grn)    $(Blk)  $(Skn)  $(Blk)  $(Bwn2)          $(Blk)  $(Std)  ""$(Std)                                        ""$(Std)  $(Blk)  $(Bwn2)         $(Blk)  $(Skn)  $(Blk)  $(Pnk)    $(Wht)  $(Pnk)    $(Blk)  $(Skn)  $(Blk)  $(Bwn2)              $(Blk)  $(Std)  "
-	@echo "$(Std)    $(Blk)    $(Gry)      $(Blk)                $(Grn)    $(Wht)  $(Grn)    $(Blk)                $(Std)    ""$(Std)                                        ""$(Std)    $(Blk)               $(Pnk)    $(Wht)  $(Pnk)    $(Blk)                    $(Std)    "
-	@echo "$(Std)        $(Blk)  $(Gry)  $(Blk)  $(Std)              $(Blk)  $(Blu)  $(Blk)      $(Blu)  $(Blk)  $(Std)                  ""$(Std)                                        ""$(Std)                 $(Blk)  $(Blu)  $(Blk)      $(Blu)  $(Blk)  $(Std)                      "
-	@echo "$(Std)          $(Blk)  $(Std)                $(Blk)  $(Bwn)  $(Blk)  $(Std)  $(Blk)  $(Bwn)  $(Blk)  $(Std)                  ""$(Std)                                        ""$(Std)                 $(Blk)  $(Wht)  $(Blk)  $(Std)  $(Blk)  $(Wht)  $(Blk)  $(Std)                      "
-	@echo "$(Std)                            $(Blk)      $(Std)  $(Blk)      $(Std)                  ""$(Std)                                        ""$(Std)                 $(Blk)      $(Std)  $(Blk)      $(Std)                      "
-	@echo "$(Std)                                                            ""$(Std)                                        ""$(Std)                                                     "
+	
 
 .PHONY: clean
 clean :

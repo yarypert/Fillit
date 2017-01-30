@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:18:47 by jorobin           #+#    #+#             */
-/*   Updated: 2017/01/27 12:20:19 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/01/30 14:31:26 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*place_tetri(t_tetri *list, char *grid)
 void	ft_placement(int nbpiece, t_tetri *list)
 {
 	t_var	*var;
-	char	*grid;
+	char	*grid = NULL;
 	char	**tab;
 	int		i;
 

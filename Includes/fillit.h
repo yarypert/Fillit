@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 16:21:55 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/25 20:13:44 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/01/30 15:26:11 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct		s_tetri
 	char *tetri;
 	int  coord[8];
 	int		flag;
+	int		index;
 	struct s_tetri *next;
 }					t_tetri;
 
@@ -40,16 +41,20 @@ typedef struct		s_var
 
 void		ft_adjust(int xmin, int ymin, t_tetri *list);
 void		ft_placement(int nbpiece, t_tetri *list);
-char		*place_tetri(t_tetri list, char *grid);
+void		print_list(t_tetri *start);
+
 int			check_place(t_tetri list, char *grid);
 int			check_char(char *str);
 int			check_links(char *str);
 int			check_lines(char *str);
 int			check_final(char *str);
-void		print_list(t_tetri *start);
-t_tetri		*add_to_list(char *str);
-char		*create_grid(int piece);
-t_tetri		get_coord(t_tetri	list, t_var *var);
 int			ft_read(char **argv);
+
+t_tetri		*add_to_list(char *str, int piece);
+t_tetri		get_coord(t_tetri	list, t_var *var);
+
+char		*grid_1_up(int piece);
+char		*create_grid(int piece);
+char		*place_tetri(t_tetri list, char *grid);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 15:56:38 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/25 19:55:05 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/01/30 15:49:12 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,30 @@ int		get_val(int piece)
 	else
 		return (-1);
 }
+
+char	*grid_1_up(int piece)
+{
+	int		val;
+	int		j;
+	int		k;
+	char	*grid;
+	size_t	size;
+
+	val = get_val(piece) + 1;
+	size = ((3 + val) * (2 + val));
+	j = 1;
+	grid = malloc(sizeof(char) * (size));
+	ft_memset((void *)grid, 46, size);
+	grid[size - 1] = '\0';
+	while (j != 3 + val)
+	{
+		k = ((3 * j) + (val * j) - 1);
+		grid[k] = '\n';
+		j++;
+	}
+	return (grid);
+}
+
 
 char	*create_grid(int piece)
 {
