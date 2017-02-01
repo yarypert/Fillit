@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 18:24:09 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/30 16:08:04 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/02/01 22:24:07 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ int ft_read(char **argv)
 	{
 		if (check_final(str) != 0)
 		{
-			ft_putstr("error\n");
+			ft_putstr("error1\n");
 			return (1);
 		}
 		if (ret == 20)
 			flag = 1;
 		else if (str[20] != '\n')
 		{
-			ft_putstr("error\n");
+			ft_putstr("error2\n");
 			return (1);
 		}
 		str[20] = '\0';
@@ -78,7 +78,7 @@ int ft_read(char **argv)
 	printf("%s%d%s\n","il y a ", piece, " pieces");
 	if (flag != 1 || ret != 0)
 	{
-		ft_putstr("error\n");
+		ft_putstr("error3\n");
 		return (1);
 	}
 	if (close(fd) == -1)

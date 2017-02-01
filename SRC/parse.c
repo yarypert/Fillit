@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 17:21:44 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/25 19:41:10 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/02/01 22:32:10 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int		check_five_char(char *str)
 {
-	if (str[4] != '\n' || str[9] != '\n' || str[14] != '\n' ||
-			str[19] != '\n')
+	if (str[4] != '\n' || str[9] != '\n' || str[14] != '\n' || str[19] != '\n')
 		return (1);
 	return (0);
 }
