@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 16:21:55 by yarypert          #+#    #+#             */
-/*   Updated: 2017/01/30 15:26:11 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/02/02 08:23:28 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,12 @@ int			check_lines(char *str);
 int			check_final(char *str);
 int			ft_read(char **argv);
 
-t_tetri		*add_to_list(char *str, int piece);
-t_tetri		get_coord(t_tetri	list, t_var *var);
+t_tetri		*add_to_list(char *str, int piece, int letter);
+t_tetri		*get_coord(t_tetri	*list, t_var *var);
 
 char		*grid_1_up(int piece);
 char		*create_grid(int piece);
 char		*place_tetri(t_tetri list, char *grid);
+char		*ft_replace_char(char *s, char find,char repl);
 
 #endif

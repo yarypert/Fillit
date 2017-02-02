@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 18:24:09 by yarypert          #+#    #+#             */
-/*   Updated: 2017/02/01 22:24:07 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/02/02 08:32:11 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	ft_print_list(t_tetri *start)
 {
 	t_tetri *tmp;
-
 	tmp = start;
 	while (tmp)
 	{
@@ -34,10 +33,14 @@ int ft_read(char **argv)
 	char str[BUFF_SIZE];
 	int flag;
 	int piece;
+	t_var *var;
+	int letter;
 
 	t_tetri	*start;
 	t_tetri *tmp;
 
+	letter = 'A';
+	var = NULL;
 	start = NULL;
 	piece = 0;
 	fd = open(argv[1], O_RDONLY);
@@ -51,34 +54,34 @@ int ft_read(char **argv)
 	{
 		if (check_final(str) != 0)
 		{
-			ft_putstr("error1\n");
+			ft_putstr("error\n");
 			return (1);
 		}
 		if (ret == 20)
 			flag = 1;
 		else if (str[20] != '\n')
 		{
-			ft_putstr("error2\n");
+			ft_putstr("error\n");
 			return (1);
 		}
 		str[20] = '\0';
 		if (piece == 0)
 		{
-			start = add_to_list(str, piece);
+			start = add_to_list(str, piece, 'A');
 			tmp = start;
 		}
 		else
 		{
-			tmp->next = add_to_list(str, piece);
+			tmp->next = add_to_list(str, piece, letter);
 			tmp = tmp->next;
 		}
 		piece++;
+		letter++;
 	}
 	ft_print_list(start);
-	printf("%s%d%s\n","il y a ", piece, " pieces");
 	if (flag != 1 || ret != 0)
 	{
-		ft_putstr("error3\n");
+		ft_putstr("error\n");
 		return (1);
 	}
 	if (close(fd) == -1)
@@ -86,21 +89,14 @@ int ft_read(char **argv)
 		ft_putstr("close failed\n");
 		return (1);
 	}
-	ft_putstr("OK\n");
-	ft_putstr("grille minimale necessaire\n");
-
-	printf("%s\n", create_grid(piece));
-	printf("%s\n", grid_1_up(piece));
-
-/*
-//LOLELOLLOLWLOWLWOWLWOLW:IWOWIOWJKDPWJOWHJ
+	
+	/*
+	//LOLELOLLOLWLOWLWOWLWOLW:IWOWIOWJKDPWJOWHJ
 	if (grille pas assez grande)
-		grid_1_up(piece);
+	grid_1_up(piece);
 	create_grid(piece);
 	//recursive;
-//skjfhskjvksjvhskuhvkshvshvkshvkshdhkgsjhshg
-*/
-
-	ft_placement(piece, start);
+	//skjfhskjvksjvhskuhvkshvshvkshvkshdhkgsjhshg
+	*/
 	return (0);
 }

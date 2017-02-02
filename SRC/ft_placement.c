@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:18:47 by jorobin           #+#    #+#             */
-/*   Updated: 2017/01/30 14:31:26 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/02/02 03:50:18 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_placement(int nbpiece, t_tetri *list)
 	i = 0;
 	while (tab[i] != NULL)
 	{
-		get_coord(*list, var);
+		get_coord(list, var);
 		//place_tetri(list, tab[i]);
 		if (list->flag == -1)
 		{
