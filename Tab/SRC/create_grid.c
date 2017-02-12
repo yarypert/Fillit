@@ -38,13 +38,13 @@ int		get_val(int piece)
 		return (-1);
 }
 
-char	*grid_1_up(int piece)
+char	**grid_1_up(int piece)
 {
 	int		val;
 	int		j;
-	int		k;
 	char	*grid;
 	size_t	size;
+	char	**tab;
 
 	val = get_val(piece) + 1;
 	size = ((3 + val) * (2 + val));
@@ -54,21 +54,22 @@ char	*grid_1_up(int piece)
 	grid[size - 1] = '\0';
 	while (j != 3 + val)
 	{
-		k = ((3 * j) + (val * j) - 1);
-		grid[k] = '\n';
+		size = ((3 * j) + (val * j) - 1);
+		grid[size] = '\n';
 		j++;
 	}
-	return (grid);
+	tab = str_to_tab(grid);
+	return (tab);
 }
 
 
-char	*create_grid(int piece)
+char	**create_grid(int piece)
 {
 	int		val;
 	int		j;
-	int		k;
 	char	*grid;
 	size_t	size;
+	char	**tab;
 
 	val = get_val(piece);
 	size = ((3 + val) * (2 + val));
@@ -78,9 +79,10 @@ char	*create_grid(int piece)
 	grid[size - 1] = '\0';
 	while (j != 3 + val)
 	{
-		k = ((3 * j) + (val * j) - 1);
-		grid[k] = '\n';
+		size = ((3 * j) + (val * j) - 1);
+		grid[size] = '\n';
 		j++;
 	}
-	return (grid);
+	tab = str_to_tab(grid);
+	return (tab);
 }

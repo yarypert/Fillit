@@ -26,7 +26,7 @@
 //jusqu'a ce qu'il n'y ai plus de tetriminos (fin du fichier ouvert)
 //- ma bit
 
-#include "fillit.h"
+#include "../Includes/fillit.h"
 
 int		main(int argc, char **argv)
 {

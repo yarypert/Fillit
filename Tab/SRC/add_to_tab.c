@@ -11,30 +11,15 @@
 /* ************************************************************************** */
 
 #include "../Includes/fillit.h"
-#include <stdio.h>
-/*
-   t_tetri		*add_to_list(char *str, int piece,int letter)
-   {
-   t_tetri *start;
-
-   start = malloc(sizeof(*start));
-   start->index = piece + 1;
-   start->tetri = malloc(sizeof(char) * (ft_strlen(str) + 1));
-   ft_strcpy(start->tetri, str);
-   ft_replace_char(start->tetri, '#', letter);
-   start->next = NULL;
-   return (start);
-   }
-   */
 
 char	**str_to_tab(char *str)
 {
 	char	**tetri;
 	int i;
-	
+
 	i = 0;
 	tetri = ft_strsplit(str, '\n');
-	
+
 	while(i < 4)
 	{
 		tetri[i] = ft_strjoin(tetri[i],"\n");
@@ -43,18 +28,27 @@ char	**str_to_tab(char *str)
 	return (tetri);
 }
 
-char	***tab_to_tabtab(char *str, int piece)
+void	print_tab(char ***tab, int piece_nb)
 {
-	int		i;
-	char	**tetri;
-	char	***tab_tetri;
+	int i;
+	int j;
+	int k;
 
-	tetri = str_to_tab(str);
-	tab_tetri = malloc(sizeof(tetri) * piece);
-
-	while (i <= piece)
+	i = 0;
+	while (i < piece_nb)
 	{
-		tab_tetri[i] = tetri;
+		j = 0;
+		while (j < 4)
+		{
+			k = 0;
+			while (k < 5)
+			{
+				ft_putchar(tab[i][j][k]);
+				k++;
+			}
+			j++;
+		}
+		ft_putchar('\n');
+		i++;
 	}
-	return(tab_tetri);
 }

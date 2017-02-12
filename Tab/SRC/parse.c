@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../Includes/fillit.h"
 
 int		check_five_char(char *str)
 {

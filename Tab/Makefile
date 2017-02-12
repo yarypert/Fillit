@@ -12,15 +12,15 @@
 
 NAME = fillit
 
-FLAG = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror -gdb
 
 SRC_PATH = ./SRC/
 
 INC_PATH = ./Includes/
 
-SRC = $(SRC_PATH)main.c $(SRC_PATH)parse.c $(SRC_PATH)add_to_list.c $(SRC_PATH)create_grid.c $(SRC_PATH)get_coord.c $(SRC_PATH)ft_read.c $(SRC_PATH)ft_placement.c $(SRC_PATH)replace_char.c
+SRC = $(SRC_PATH)main.c $(SRC_PATH)parse.c $(SRC_PATH)add_to_tab.c $(SRC_PATH)create_grid.c $(SRC_PATH)ft_fillit.c $(SRC_PATH)replace_char.c $(SRC_PATH)ft_error.c $(SRC_PATH)get_coord.c
 
-OBJ = main.o parse.o add_to_list.o create_grid.o get_coord.o ft_read.o ft_placement.o replace_char.o
+OBJ = main.o parse.o add_to_tab.o create_grid.o ft_fillit.o replace_char.o ft_error.o get_coord.o
 
 Std = \0033[48;5;236m
 Blk = \0033[48;5;16m
@@ -40,7 +40,7 @@ Skn = \0033[48;5;216m
 all: $(NAME)
 
 $(NAME):
-	@gcc $(FLAG) -c $(SRC) -I $(INC_PATH)
+	@gcc -c $(SRC) -I $(INC_PATH)
 	@gcc $(OBJ) ./libft/libft.a -I $(INC_PATH) -o $(NAME)
 	@mkdir tmp
 	@mv $(OBJ) tmp

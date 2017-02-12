@@ -26,13 +26,13 @@
 //jusqu'a ce qu'il n'y ai plus de tetriminos (fin du fichier ouvert)
 //- ma bit
 
-#include "fillit.h"
+#include "../Includes/fillit.h"
 
 int		main(int argc, char **argv)
 {
 	if (argc == 2)
-		ft_read(argv);
+		ft_fillit(argv);
 	else
-		ft_putstr("error\n");
+		ft_error("wrong number of arguments");
 	return(1);
 }

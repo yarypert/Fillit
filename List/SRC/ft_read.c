@@ -33,18 +33,16 @@ int ft_read(char **argv)
 	char str[BUFF_SIZE];
 	int flag;
 	int piece;
-	t_var *var;
 	int letter;
 
 	t_tetri	*start;
-	t_tetri *tmp;
+	//t_tetri *tmp;
 
 	letter = 'A';
-	var = NULL;
 	start = NULL;
 	piece = 0;
 	fd = open(argv[1], O_RDONLY);
-	tmp = NULL;
+	//tmp = NULL;
 	if (fd == -1)
 	{
 		ft_putstr("open failed\n");
@@ -65,7 +63,7 @@ int ft_read(char **argv)
 			return (1);
 		}
 		str[20] = '\0';
-		if (piece == 0)
+		/*if (piece == 0)
 		{
 			start = add_to_list(str, piece, 'A');
 			tmp = start;
@@ -74,7 +72,7 @@ int ft_read(char **argv)
 		{
 			tmp->next = add_to_list(str, piece, letter);
 			tmp = tmp->next;
-		}
+		}*/
 		piece++;
 		letter++;
 	}
