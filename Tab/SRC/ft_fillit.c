@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_fillit.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/13 17:29:49 by yarypert          #+#    #+#             */
+/*   Updated: 2017/02/13 17:41:10 by yarypert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Includes/fillit.h"
 
-int ft_fillit(char **argv)
+int		ft_fillit(char **argv)
 {
 	t_var	var;
 	var.flag = 0;
@@ -21,9 +33,7 @@ int ft_fillit(char **argv)
 		var.piece_nb++;
 	}
 	ft_flag_err(var.flag, var.ret);
-	
-	get_coord(var.tab_tetri, var.piece_nb);
-	//print_tab(var.tab_tetri, var.piece_nb);
+	print_tab(var.tab_tetri, var.piece_nb);
 	ft_close(var.fd);
 	return (0);
 }

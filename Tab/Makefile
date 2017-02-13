@@ -6,7 +6,7 @@
 #    By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/06 00:55:05 by yarypert          #+#    #+#              #
-#    Updated: 2017/02/02 06:10:04 by yarypert         ###   ########.fr        #
+#    Updated: 2017/02/13 16:59:31 by yarypert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ SRC_PATH = ./SRC/
 
 INC_PATH = ./Includes/
 
-SRC = $(SRC_PATH)main.c $(SRC_PATH)parse.c $(SRC_PATH)add_to_tab.c $(SRC_PATH)create_grid.c $(SRC_PATH)ft_fillit.c $(SRC_PATH)replace_char.c $(SRC_PATH)ft_error.c $(SRC_PATH)get_coord.c
+SRC = $(SRC_PATH)main.c $(SRC_PATH)parse.c $(SRC_PATH)add_to_tab.c $(SRC_PATH)create_grid.c $(SRC_PATH)ft_fillit.c $(SRC_PATH)replace_char.c $(SRC_PATH)ft_error.c
 
-OBJ = main.o parse.o add_to_tab.o create_grid.o ft_fillit.o replace_char.o ft_error.o get_coord.o
+OBJ = main.o parse.o add_to_tab.o create_grid.o ft_fillit.o replace_char.o ft_error.o
 
 Std = \0033[48;5;236m
 Blk = \0033[48;5;16m

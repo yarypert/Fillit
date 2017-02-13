@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 16:21:55 by yarypert          #+#    #+#             */
-/*   Updated: 2017/02/02 08:23:28 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/02/13 19:16:40 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,24 @@ typedef	struct	s_var
 	int		flag;
 	int		piece_nb;
 	char	str[BUFF_SIZE];
-	int		coord[8];
 	char	**tab_tetri[26];
 }				t_var;
 
+int			find_x_min(char **tab_tetri);
+int			find_y_min(char **tab_tetri);
 int			check_char(char *str);
 int			check_links(char *str);
 int			check_lines(char *str);
 int			check_final(char *str);
 int			ft_fillit(char **argv);
-void		get_coord(char ***tetri, int piece_nb);
 
+char		**move_tetri(char **tab_tetri);
 char		**grid_1_up(int piece);
 char		**create_grid(int piece);
 char		**str_to_tab(char *str);
 
 void		ft_print_int_tab(int **coord, int piece_nb);
+void		print_2dim_tab(char **tab_tetri);
 void		print_tab(char ***tab_tetri,int piece_nb);
 void		ft_error(char *str);
 void		ft_close(int fd);
