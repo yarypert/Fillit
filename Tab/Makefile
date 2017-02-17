@@ -18,9 +18,9 @@ SRC_PATH = ./SRC/
 
 INC_PATH = ./Includes/
 
-SRC = $(SRC_PATH)main.c $(SRC_PATH)parse.c $(SRC_PATH)add_to_tab.c $(SRC_PATH)create_grid.c $(SRC_PATH)ft_fillit.c $(SRC_PATH)replace_char.c $(SRC_PATH)ft_error.c
+SRC = $(SRC_PATH)main.c $(SRC_PATH)parse.c $(SRC_PATH)add_to_tab.c $(SRC_PATH)create_grid.c $(SRC_PATH)ft_fillit.c $(SRC_PATH)replace_char.c $(SRC_PATH)ft_error.c $(SRC_PATH)move_tetri.c $(SRC_PATH)ft_print_tab.c
 
-OBJ = main.o parse.o add_to_tab.o create_grid.o ft_fillit.o replace_char.o ft_error.o
+OBJ = main.o parse.o add_to_tab.o create_grid.o ft_fillit.o replace_char.o ft_error.o move_tetri.o ft_print_tab.o
 
 Std = \0033[48;5;236m
 Blk = \0033[48;5;16m

@@ -1,30 +1,5 @@
 #include "../Includes/fillit.h"
 
-void	print_tab(char ***tab_tetri,int piece)
-{
-	int i;
-	int j;
-	int k;
-
-	k = 0;
-	while (k <= piece - 1)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			i = 0;
-			while (i < 5)
-			{
-				ft_putchar(tab_tetri[k][j][i]);
-				i++;
-			}
-			j++;
-		}
-		k++;
-	}
-}
-
-
 void	print_2dim_tab(char **tab_tetri)
 {
 	int i;
@@ -41,5 +16,25 @@ void	print_2dim_tab(char **tab_tetri)
 			i++;
 		}
 		j++;
+	}
+}
+
+void	ft_putdoubletab(char **tab_tetri)
+{
+	int t1;
+	int t2;
+
+	t1 = 0;
+	t2 = 0;
+	while (tab_tetri[t1] != NULL)
+	{
+		while (tab_tetri[t1][t2] != '\n')
+		{
+			ft_putchar(tab_tetri[t1][t2]);
+			t2++;
+		}
+			ft_putchar(tab_tetri[t1][t2]);
+		t2 = 0;
+		t1++;
 	}
 }

@@ -24,7 +24,7 @@ typedef	struct	s_var
 {
 	int		fd;
 	int		ret;
-	static	int		flag;
+	int		flag;
 	int		piece_nb;
 	char	str[BUFF_SIZE];
 	char	**tab_tetri[26];
@@ -50,5 +50,6 @@ void		ft_error(char *str);
 void		ft_close(int fd);
 void		ft_open(int fd);
 void		ft_flag_err(int flag, int ret);
+void		ft_putdoubletab(char **tab_tetri);
 
 #endif

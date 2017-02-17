@@ -14,26 +14,27 @@
 
 void	ft_placement(int nbpiece, char ***tab_tetri)
 {
-	t_var	*var;
+	t_var	var;
 	char	*grid = NULL;
 	int		i;
-	t_var	*list;
 
 	create_grid(nbpiece);
 	i = 0;
-	while (**tab_tetri[i] != NULL)
+	while (tab_tetri[i] != NULL)
 	{
 		move_tetri(tab_tetri[i]);
-		place_tetri(list, **tab_tetri[i], grid);
-		while (list->flag != 0)//tant qu'on a pas bien place une piece
+		//place_tetri(var, **tab_tetri[i], grid);
+		while (var.flag != 0)//tant qu'on a pas bien place une piece
 		{
-			if (list->flag == 1)//plus de possibilite d'aller une piece en arriere
+			if (var.flag == 1)//plus de possibilite d'aller une piece en arriere
 				//>>>>> agrandir la map de 1
 				grid_1_up(i);
-			if (list->flag == -1)
+			if (var.flag == -1)
 				//revenir a la piece precedente si pas d'autre placement
 				i--;
-			if (list->flag == 2)
+			if (var.flag == 2)
+				//place_tetri(var, **tab_tetri[i],grid);
+				ft_void();
 				//tester un autre placement
 		}
 		i++;

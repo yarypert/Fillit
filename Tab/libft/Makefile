@@ -31,7 +31,7 @@ SRC = ft_atoi.c ft_bzero.c ft_factorial.c ft_find_next_prime.c ft_is_prime.c\
 	  ft_strmap.c ft_strmapi.c ft_strncat.c ft_strncmp.c ft_strncpy.c\
 	  ft_strnequ.c ft_strnew.c ft_strnstr.c ft_strrchr.c ft_strrev.c\
 	  ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c ft_strupcase.c\
-	  ft_tolower.c ft_toupper.c\
+	  ft_tolower.c ft_toupper.c ft_void.c\
 
 OBJ = ${SRC:c=o}
 
@@ -41,6 +41,8 @@ $(NAME):
 	@gcc -c $(FLAG) -I$(HEADER) $(SRC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
+	@mkdir tmp
+	@mv $(OBJ) tmp
 	@echo "\0033[48;5;234m                                  ""                              ""\0033[48;5;234m                                  "
 	@echo "        \0033[48;5;0m                  \0033[48;5;234m        ""                              ""        \0033[48;5;0m                  \0033[48;5;234m        "
 	@echo "      \0033[48;5;0m  \0033[48;5;234m                  \0033[48;5;0m  \0033[48;5;234m      ""                              ""      \0033[48;5;0m  \0033[48;5;130m                  \0033[48;5;0m  \0033[48;5;234m      "
@@ -68,7 +70,7 @@ $(NAME):
 
 .PHONY: clean
 clean :
-	@rm -Rf $(OBJ)
+	@rm -Rf tmp
 	@echo "\033[38;5;40m[✓] \033[38;5;15m Removed object files"
 
 fclean: clean

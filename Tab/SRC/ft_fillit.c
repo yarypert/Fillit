@@ -30,6 +30,7 @@ int		ft_fillit(char **argv)
 			ft_error("FILE NOT VALID");
 		var.str[20] = '\0';
 		var.tab_tetri[var.piece_nb] = str_to_tab(var.str);
+		move_tetri(var.tab_tetri[var.piece_nb]);
 		var.piece_nb++;
 	}
 	ft_flag_err(var.flag, var.ret);
