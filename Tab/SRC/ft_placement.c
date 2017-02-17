@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:18:47 by jorobin           #+#    #+#             */
-/*   Updated: 2017/02/17 10:46:30 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/02/17 11:01:13 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,17 @@ void	ft_placement(int nbpiece, char ***tab_tetri)
 	{
 		move_tetri(tab_tetri[i]);
 		place_tetri(list, **tab_tetri[i], grid);
-		if (list->flag == -1)
+		while (list->flag != 0)//tant qu'on a pas bien place une piece
 		{
-			if (i == 0)
-				//fonction pour agrandir la map de 1
-			if (i != 0)
-				//reculer d'une piece
+			if (list->flag == 1)//plus de possibilite d'aller une piece en arriere
+				//>>>>> agrandir la map de 1
+				grid_1_up(i);
+			if (list->flag == -1)
+				//revenir a la piece precedente si pas d'autre placement
+				i--;
+			if (list->flag == 2)
+				//tester un autre placement
 		}
-		if (list->flag == 1)
-		{
-			i++;
-		}
+		i++;
 	}
 }

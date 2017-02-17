@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 16:21:55 by yarypert          #+#    #+#             */
-/*   Updated: 2017/02/13 19:16:40 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/02/17 11:01:15 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef	struct	s_var
 {
 	int		fd;
 	int		ret;
-	int		flag;
+	static	int		flag;
 	int		piece_nb;
 	char	str[BUFF_SIZE];
 	char	**tab_tetri[26];
