@@ -12,26 +12,43 @@
 
 #include "../Includes/fillit.h"
 
+char	*clr_place_grid(char *grid)
+{
+	int		i;
+
+	i = 0;
+	while (grid[i])
+	{
+		while (grid[i] != '\n')
+		{
+			grid[i] = '.';
+		}
+		i++;
+	}
+	return(grid);
+}
+
 int		place_tetri(char **tab_tetri, char *grid, int n, t_var *var)
 {
 	int i;
 	int j;
-	char	**place_grid[n];
+	char	**place_grid;
 
-	*place_grid[j] = grid;
+	place_grid = (char**)malloc(sizeof(char*) * n + 1);
+	place_grid[j] = grid;
 	i = 0;
-	while (place_grid[i])
+	while (place_grid[j])
 	{
-		while (grid[i] == '#' || place_grid[i] == 'x')
+		while (grid[i] == '#' || place_grid[j][i] == 'x')
 		{
 			if (grid[i] == '#')
-				place_grid[i] = 'x';
+				place_grid[j][i] = 'x';
 			i++;
 		}
 		if (ft_check(grid, tab_tetri, i) == 0)
 			ft_place(grid, tab_tetri, i);//on place le tetri
 		if (ft_check(grid, tab_tetri, i) == 1)//pas bon placement
-			place_grid[i] = 'x';
+			place_grid[j][i] = 'x';
 		if (ft_check(grid, tab_tetri, i) == -1)//la map des x a que des x
 		{
 			clr_place_grid(place_grid[j]);//clean la map_x
