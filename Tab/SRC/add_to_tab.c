@@ -27,6 +27,21 @@ char	**str_to_tab(char *str)
 	}
 	return (tetri);
 }
+char	**grid_to_tab(char *str)
+{
+	char	**tetri;
+	int i;
+
+	i = 0;
+	tetri = ft_strsplit(str, '\n');
+
+	while(tetri[i])
+	{
+		tetri[i] = ft_strjoin(tetri[i],"\n");
+		i++;
+	}
+	return (tetri);
+}
 
 void	print_tab(char ***tab, int piece_nb)
 {

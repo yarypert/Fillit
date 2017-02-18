@@ -84,3 +84,12 @@ char	*create_grid(int piece)
 	}
 	return (grid);
 }
+
+int main()
+{
+	char *str;
+
+	str = create_grid(15);
+	ft_putstr(str);
+	return 0;
+}
