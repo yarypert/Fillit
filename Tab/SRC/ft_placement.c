@@ -28,6 +28,74 @@ char	*clr_place_grid(char *grid)
 	return(grid);
 }
 
+char	*ft_place(char *grid, char **tab_tetri, int place)
+{
+	int		i;
+	int		j;
+	int		k;
+/*
+	i = place;
+	j = 0;
+	k = 0;
+	while (grid[i] != '\0')
+	{
+		while (k != 4)
+		{
+			if (grid[i] == '.')
+			{
+				while (*tab_tetri[j] == '.')
+					j++;
+				grid[i] = *tab_tetri[j];
+				i++;
+				j++;
+				k++;
+			}
+			if (grid[i] == '\n')
+				i++;
+		}
+	}*/
+	return(grid);
+}
+
+int		ft_check(char *grid, char **tab_tetri, int place)
+{//fonction check si la place "int place" est valide
+//c'est a dire si on peut placer le tetri **tab_tetri a cet endroit
+//si on ne peut pas on renvoit 1
+//si on peut on renvoit 0
+
+	int i;
+	int j;
+	int k;
+
+	i = place;
+	j = 0;
+	k = 0;
+	while (grid[i] != '\0')
+	{
+		while (k < 4 || *tab_tetri[j])
+		{
+			if (grid[i] == '.')
+			{
+				while (*tab_tetri[j] == '.')
+					j++;
+				grid[i] = *tab_tetri[j];
+				if (k != 0)//si une partie de piece est deja placee
+				{
+					//regarder si ca forme un motif de tetri valide
+					if (grid[i - 1] != '#' || grid[i + 1] != '#' || grid[i + 5] != '#')
+						return(1);
+				}
+				k++;
+				i++;
+			}
+			if (grid[i] == '\n')
+				i++;
+		}
+		return(0);
+	}
+	return(1);
+}
+
 int		place_tetri(char **tab_tetri, char *grid, int n, t_var *var)
 {
 	int i;
@@ -46,7 +114,9 @@ int		place_tetri(char **tab_tetri, char *grid, int n, t_var *var)
 			i++;
 		}
 		if (ft_check(grid, tab_tetri, i) == 0)
-			ft_place(grid, tab_tetri, i);//on place le tetri
+			grid = ft_place(grid, tab_tetri, i);//on place le tetri
+			j++;
+			return(0);
 		if (ft_check(grid, tab_tetri, i) == 1)//pas bon placement
 			place_grid[j][i] = 'x';
 		if (ft_check(grid, tab_tetri, i) == -1)//la map des x a que des x
@@ -58,7 +128,7 @@ int		place_tetri(char **tab_tetri, char *grid, int n, t_var *var)
 			return(-1);//passer a la piece d'avant
 		}
 	}
-	return(0);
+	return(1);
 }
 
 
