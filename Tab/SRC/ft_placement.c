@@ -22,8 +22,10 @@ int		place_tetri(char **tab_tetri, char *grid, int n, t_var *var)
 	i = 0;
 	while (place_grid[i])
 	{
-		while (place_grid[i] == '#' || place_grid[i] == 'x')
+		while (grid[i] == '#' || place_grid[i] == 'x')
 		{
+			if (grid[i] == '#')
+				place_grid[i] = 'x';
 			i++;
 		}
 		if (ft_check(grid, tab_tetri, i) == 0)
