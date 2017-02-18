@@ -42,6 +42,7 @@ char		**move_tetri(char **tab_tetri);
 char		**grid_1_up(int piece);
 char		**create_grid(int piece);
 char		**str_to_tab(char *str);
+char		**grid_to_tab(char *str);
 
 void		ft_print_int_tab(int **coord, int piece_nb);
 void		print_2dim_tab(char **tab_tetri);

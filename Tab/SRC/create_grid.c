@@ -58,7 +58,8 @@ char	**grid_1_up(int piece)
 		grid[size] = '\n';
 		j++;
 	}
-	tab = str_to_tab(grid);
+	tab = grid_to_tab(grid);
+	ft_putdoubletab(tab);
 	return (tab);
 }
 
@@ -83,6 +84,14 @@ char	**create_grid(int piece)
 		grid[size] = '\n';
 		j++;
 	}
-	tab = str_to_tab(grid);
+	tab = grid_to_tab(grid);
+	ft_putdoubletab(tab);
 	return (tab);
+}
+
+int main()
+{
+	create_grid(25);
+
+	return 0;
 }
