@@ -17,6 +17,7 @@ int		ft_fillit(char **argv)
 	t_var	var;
 	var.flag = 0;
 	var.piece_nb = 0;
+	var.dest = 65;
 	var.fd = open(argv[1], O_RDONLY);
 	ft_open(var.fd);
 
@@ -31,7 +32,9 @@ int		ft_fillit(char **argv)
 		var.str[20] = '\0';
 		var.tab_tetri[var.piece_nb] = str_to_tab(var.str);
 		move_tetri(var.tab_tetri[var.piece_nb]);
+		ft_replace_char(var.tab_tetri[var.piece_nb], '#',var.dest);
 		var.piece_nb++;
+		var.dest++;
 	}
 	ft_flag_err(var.flag, var.ret);
 	print_tab(var.tab_tetri, var.piece_nb);

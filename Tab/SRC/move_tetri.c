@@ -93,7 +93,6 @@ char	**move_tetri(char **tab_tetri)
 	tab_tetri = xmin_diff_zero(tab_tetri, i, j, xmin);
 	tab_tetri = ymin_diff_zero(tab_tetri, i, j, ymin);
 
-		ft_putdoubletab(tab_tetri);
 	return (tab_tetri);
 }
 

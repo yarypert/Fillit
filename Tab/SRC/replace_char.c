@@ -12,16 +12,38 @@
 
 #include "../Includes/fillit.h"
 
-char *ft_replace_char(char *s, char find, char repl)
+char **ft_replace_char(char **s, char find, char repl)
 {
 	int i;
+	int j;
 
-	i	= 0;
+	i = 0;
 	while (s[i])
 	{
-		if (s[i] == find)
-			s[i] = repl;
-		i++;
+		j = 0;
+		while (s[i][j])
+		{
+		if (s[i][j] == find)
+			s[i][j] = repl;
+		j++;
+		}
+	i++;
 	}
+	ft_putdoubletab(s);
 	return (s);
 }
+/*
+int main(int argc, const char *argv[])
+{
+	char *test;
+	char **tmp;
+
+	tmp = NULL;
+	test = (char *)malloc(sizeof(char) * 24 + 1);
+	test = "....\ni....\ni.##.\ni.##.\ni\0";
+	tmp = ft_strsplit(test, 'i');
+	
+	ft_replace_char(tmp, '#', 'A');
+	return 0;
+}
+*/

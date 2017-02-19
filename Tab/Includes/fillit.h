@@ -28,6 +28,7 @@ typedef	struct	s_var
 	int		piece_nb;
 	char	str[BUFF_SIZE];
 	char	**tab_tetri[26];
+	char	dest;
 }				t_var;
 
 int			find_x_min(char **tab_tetri);
@@ -43,6 +44,7 @@ char		**grid_1_up(int piece);
 char		**create_grid(int piece);
 char		**str_to_tab(char *str);
 char		**grid_to_tab(char *str);
+char		**ft_replace_char(char **s, char find, char repl);
 
 void		ft_print_int_tab(int **coord, int piece_nb);
 void		print_2dim_tab(char **tab_tetri);
