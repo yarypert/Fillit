@@ -84,34 +84,36 @@ int		ft_check(char *grid, char **tetri, int place)
 	int i;
 	int j;
 	int k;
-	char letter;
+	char let;
 
 	i = place;
 	j = 0;
 	k = 0;
-	letter = find_letter(tetri);
+	let = find_letter(tetri);
 	while (grid[i] != '\0')
 	{
-		while (k < 4 || *tetri[j])
+		while (k < 4 || tetri[j][i])
 		{
 			if (grid[i] == '.')
 			{
-				while (*tetri[j] == '.')
+				while (tetri[j][i] == '.')
 					j++;
-				grid[i] = *tetri[j];
+				grid[i] = tetri[j][i];
 				if (k != 0)//si une partie de piece est deja placee
 				{
 					//regarder si 
-					if (grid[i - 1] != '#' || grid[i + 1] != '#' || grid[i + 5] != '#')
+					if (grid[i - 1] != let || grid[i + 1] != let || grid[i + 5] != let)
 						return(1);
 				}
 				k++;
 				i++;
 			}
 			if (grid[i] == '\n')
-				if (*tetri[j + 1] != '.' || *tetri[j + 1] != '\n')
+			{
+				if (tetri[j][i + 1] != '.' || tetri[j][i + 1] != '\n')
 					return(1);
 				i++;
+			}
 		}
 		return(0);
 	}
