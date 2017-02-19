@@ -98,37 +98,40 @@ int		ft_check(char *grid, char **tab_tetri, int place)
 	return(1);
 }
 
-int		place_tetri(char **tab_tetri, char *grid, int n)
+int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
 {
-	int i;
-	int j;
-	char	**place_grid;
+	int		i;
+	int		j;
+	char	**map_x;
 
-	place_grid = (char**)malloc(sizeof(char*) * n + 1);
-	place_grid[j] = grid;
+	map_x = (char**)malloc(sizeof(char*) * n + 1);
 	i = 0;
-	while (place_grid[j])
+	j = 0;
+	map_x[j] = *map;
+	while (map_x[j])
 	{
-		while (grid[i] == '#' || place_grid[j][i] == 'x')
+		while (map[j][i] == '#' || map_x[j][i] == 'x')//ce while detecte et remplace les cases invalide par des X
 		{
-			if (grid[i] == '#')
-				place_grid[j][i] = 'x';
+			if (map[j][i] == '#')
+				map_x[j][i] = 'x';
 			i++;
 		}
-		if (ft_check(grid, tab_tetri, i) == 0)
-			grid = ft_place(grid, tab_tetri, i);//on place le tetri
+		if (ft_check(*map, tetri, i) == 0)
+			*map = ft_place(*map, tetri, i);//on place le tetri
 			j++;
 			return(0);
-		if (ft_check(grid, tab_tetri, i) == 1)//pas bon placement
-			place_grid[j][i] = 'x';
-		if (ft_check(grid, tab_tetri, i) == -1)//la map des x a que des x
+		if (ft_check(*map, tetri, i) == 1)//pas bon placement
+			map_x[j][i] = 'x';
+		if (ft_check(*map, tetri, i) == -1)//la map des x a que des x
 		{
-			clr_place_grid(place_grid[j]);//clean la map_x
+			clr_place_grid(map_x[j]);//clean la map_x
 			if (!(j - 1))//si ya pas de piece avant
 				return(1);//agrandir la map
 			j--; //map_x d'avant
 			return(-1);//passer a la piece d'avant
 		}
+		if (map[j][i] == '\n')
+			i++;
 	}
 	return(1);
 }
@@ -146,11 +149,11 @@ void	ft_placement(int nbpiece, char ***tab_tetri)
 	while (tab_tetri[i] != NULL)
 	{
 		move_tetri(tab_tetri[i]);
-		while (place_tetri(tab_tetri[i], *grid, i) != 0)//tant qu'on a pas bien place une piece
+		while (place_tetri(tab_tetri[i], grid, nbpiece) != 0)//tant qu'on a pas bien place une piece
 		{
-			if (place_tetri(tab_tetri[i], *grid, i) == 1)//plus de possibilite d'aller une piece en arriere
+			if (place_tetri(tab_tetri[i], grid, nbpiece) == 1)//plus de possibilite d'aller une piece en arriere
 				grid_1_up(i);//agrandir la map de 1
-			if (place_tetri(tab_tetri[i], *grid, i) == -1)
+			if (place_tetri(tab_tetri[i], grid, nbpiece) == -1)
 				i--;
 		}
 		i++;
