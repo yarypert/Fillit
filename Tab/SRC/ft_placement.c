@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:18:47 by jorobin           #+#    #+#             */
-/*   Updated: 2017/02/17 11:01:13 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/02/19 13:18:49 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int		ft_check(char *grid, char **tab_tetri, int place)
 				i++;
 			}
 			if (grid[i] == '\n')
+				if (*tab_tetri[j + 1] != '.' || *tab_tetri[j + 1] != '\n')
+					return(1);
 				i++;
 		}
 		return(0);
