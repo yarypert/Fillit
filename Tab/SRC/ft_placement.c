@@ -140,7 +140,6 @@ int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
 
 void	ft_placement(int nbpiece, char ***tab_tetri)
 {
-	t_var	*var;
 	char	**grid = NULL;
 	int		i;
 
