@@ -1,7 +1,9 @@
 #include "../Includes/fillit.h"
 
+
 void	print_2dim_tab(char **tab_tetri)
 {
+//affiche uniquement un tetri
 	int i;
 	int j;
 
@@ -21,6 +23,7 @@ void	print_2dim_tab(char **tab_tetri)
 
 void	ft_putdoubletab(char **tab_tetri)
 {
+//affiche nimporte quel tableau
 	int t1;
 	int t2;
 

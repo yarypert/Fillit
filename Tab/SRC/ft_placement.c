@@ -98,7 +98,7 @@ int		ft_check(char *grid, char **tab_tetri, int place)
 	return(1);
 }
 
-int		place_tetri(char **tab_tetri, char *grid, int n, t_var *var)
+int		place_tetri(char **tab_tetri, char *grid, int n)
 {
 	int i;
 	int j;
@@ -137,8 +137,13 @@ int		place_tetri(char **tab_tetri, char *grid, int n, t_var *var)
 
 void	ft_placement(int nbpiece, char ***tab_tetri)
 {
+<<<<<<< HEAD
 	t_var	*var;
 	char	**grid = NULL;
+=======
+	t_var	var;
+	char	*grid = NULL;
+>>>>>>> bd8447da322abd90eba415403fb859f159cf6259
 	int		i;
 
 	grid = create_grid(nbpiece);
@@ -146,11 +151,19 @@ void	ft_placement(int nbpiece, char ***tab_tetri)
 	while (tab_tetri[i] != NULL)
 	{
 		move_tetri(tab_tetri[i]);
+<<<<<<< HEAD
 		while (place_tetri(tab_tetri[i], *grid, i, var) != 0)//tant qu'on a pas bien place une piece
 		{
 			if (place_tetri(tab_tetri[i], *grid, i, var) == 1)//plus de possibilite d'aller une piece en arriere
 				grid_1_up(i);//agrandir la map de 1
 			if (place_tetri(tab_tetri[i], *grid, i, var) == -1)
+=======
+		while (place_tetri(tab_tetri[i], grid, i) != 0)//tant qu'on a pas bien place une piece
+		{
+			if (place_tetri(tab_tetri[i], grid, i) == 1)//plus de possibilite d'aller une piece en arriere
+				grid_1_up(i);//agrandir la map de 1
+			if (place_tetri(tab_tetri[i], grid, i) == -1)
+>>>>>>> bd8447da322abd90eba415403fb859f159cf6259
 				i--;
 		}
 		i++;
