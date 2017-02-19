@@ -29,7 +29,6 @@ char **ft_replace_char(char **s, char find, char repl)
 		}
 	i++;
 	}
-	ft_putdoubletab(s);
 	return (s);
 }
 /*
