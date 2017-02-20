@@ -12,52 +12,51 @@
 
 #include "../Includes/fillit.h"
 
-char	*clr_place_grid(char *grid)
+char	*clr_map_x(char *map)
 {
 	int		i;
 
 	i = 0;
-	while (grid[i])
+	while (map[i])
 	{
-		while (grid[i] != '\n')
+		while (map[i] != '\n')
 		{
-			grid[i] = '.';
+			map[i] = '.';
 		}
 		i++;
 	}
-	return(grid);
+	return(map);
 }
 
-char	*ft_place(char *grid, char **tab_tetri, int place)
+char	**ft_place(char **grid, char **tetri, int place)
 {
-	int		i;
-	int		j;
-	int		k;
-
-	i = place;
-	j = 0;
-	k = 0;
-	while (grid[i] != '\0')
-	{
-		while (k != 4)
-		{
-			if (grid[i] == '.')
-			{
-				while (*tab_tetri[j] == '.')
-					j++;
-				grid[i] = *tab_tetri[j];
-				i++;
-				j++;
-				k++;
-			}
-			if (grid[i] == '\n')
-				i++;
-		}
-	}
 	return(grid);
 }
 
-int		ft_check(char *grid, char **tab_tetri, int place)
+char	find_letter(char **tetri)
+{
+	int i;
+	int j;
+	char k;
+
+	i = 0;
+	j = 0;
+	k = 'x';
+
+	while (tetri[j] != NULL)
+	{
+		while (tetri[j][i] == '\n')
+		{
+			if ((tetri[j][i] > 'A' && tetri[j][i] < 'Z') && k == 'x')
+				k = tetri[j][i];
+			i++;
+		}
+		j++;
+	}
+	return (k);
+}
+
+int		ft_check(char **grid, char **tetri, int place)
 {//fonction check si la place "int place" est valide
 //c'est a dire si on peut placer le tetri **tab_tetri a cet endroit
 //si on ne peut pas on renvoit 1
@@ -66,32 +65,43 @@ int		ft_check(char *grid, char **tab_tetri, int place)
 	int i;
 	int j;
 	int k;
+	int l;
+	char let;
 
+	let = find_letter(tetri);
 	i = place;
 	j = 0;
 	k = 0;
-	while (grid[i] != '\0')
+	l = 0;
+	while (grid[j] != NULL)
 	{
-		while (k < 4 || *tab_tetri[j])
+		while (k < 4 || tetri[j][i])
 		{
-			if (grid[i] == '.')
+			while (grid[j][i] != '\n')
 			{
-				while (*tab_tetri[j] == '.')
-					j++;
-				grid[i] = *tab_tetri[j];
-				if (k != 0)//si une partie de piece est deja placee
+				if (grid[j][i] == '.')
 				{
-					//regarder si ca forme un motif de tetri valide
-					if (grid[i - 1] != '#' || grid[i + 1] != '#' || grid[i + 5] != '#')
-						return(1);
+					while (tetri[j][l] == '.')
+						l++;
+					grid[j][i] = tetri[j][l];
+					if (k != 0)//si une partie de piece est deja placee
+					{
+						//regarder si ca forme un motif de tetri valide
+						if (grid[j][i - 1] != let || grid[j][i + 1] != let || grid[j][i + 5] != let)
+							return(1);
+					}
+					k++;
+					l++;
+					i++;
 				}
-				k++;
-				i++;
 			}
-			if (grid[i] == '\n')
-				if (*tab_tetri[j + 1] != '.' || *tab_tetri[j + 1] != '\n')
+			j++;
+			if (grid[j][i] == '\n')
+			{
+				if (tetri[j + 1][i] != '.' || tetri[j + 1][i] != '\n')
 					return(1);
 				i++;
+			}
 		}
 		return(0);
 	}
@@ -124,46 +134,49 @@ int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
 {
 	int		i;
 	int		j;
-	int		z;
+	int		k;
 	char	**map_x;
 
 	i = 0;
 	j = 0;
-	z = 0;
+	k = 0;
 	map_x = (char**)malloc(sizeof(char*) * n  + 1);
 
-	while (z <= n)
+	while (k <= n)
 	{
-		map_x[z] = (char*)malloc(sizeof(char) * ft_strxlen(map) + 1);
-		z++;
+		map_x[k] = (char*)malloc(sizeof(char) * ft_strxlen(map) + 1);
+		k++;
 	}
 
-	map_x[j] = *map;
+	k = 0;
+	map_x[k] = *map;
 
-	while (map_x[j])
+	while (map_x[k][i])
 	{
-		while (map[j][i] == '#' || map_x[j][i] == 'x')//ce while detecte et remplace les cases invalide par des X
+		while (map[j][i] != '\n')
 		{
-			if (map[j][i] == '#')
+			while (map[j][i] == '#' || map_x[k][i] == 'x')//ce while detecte et remplace les cases invalide par des X
+			{
+				if (map[j][i] == '#')
+					map_x[j][i] = 'x';
+				i++;
+			}
+			if (ft_check(map, tetri, i) == 0)
+				map = ft_place(map, tetri, i);//on place le tetri
+				j++;
+				return(0);
+			if (ft_check(map, tetri, i) == 1)//pas bon placement
 				map_x[j][i] = 'x';
-			i++;
+			if (ft_check(map, tetri, i) == -1)//la map des x a que des x
+			{
+				clr_map_x(map_x[k]);//clean la map_x
+				if (!(j - 1))//si ya pas de piece avant
+					return(1);//agrandir la map
+				j--; //map_x d'avant
+				return(-1);//passer a la piece d'avant
+			}
 		}
-		if (ft_check(*map, tetri, i) == 0)
-			*map = ft_place(*map, tetri, i);//on place le tetri
-			j++;
-			return(0);
-		if (ft_check(*map, tetri, i) == 1)//pas bon placement
-			map_x[j][i] = 'x';
-		if (ft_check(*map, tetri, i) == -1)//la map des x a que des x
-		{
-			clr_place_grid(map_x[j]);//clean la map_x
-			if (!(j - 1))//si ya pas de piece avant
-				return(1);//agrandir la map
-			j--; //map_x d'avant
-			return(-1);//passer a la piece d'avant
-		}
-		if (map[j][i] == '\n')
-			i++;
+		j++;
 	}
 	return(1);
 }
