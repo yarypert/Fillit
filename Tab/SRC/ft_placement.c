@@ -33,7 +33,7 @@ char	*ft_place(char *grid, char **tab_tetri, int place)
 	int		i;
 	int		j;
 	int		k;
-/*
+
 	i = place;
 	j = 0;
 	k = 0;
@@ -53,7 +53,7 @@ char	*ft_place(char *grid, char **tab_tetri, int place)
 			if (grid[i] == '\n')
 				i++;
 		}
-	}*/
+	}
 	return(grid);
 }
 
@@ -98,16 +98,48 @@ int		ft_check(char *grid, char **tab_tetri, int place)
 	return(1);
 }
 
+int		ft_strxlen(char **str)
+{
+	int i;
+	int j;
+	int k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (str[j] != NULL)
+	{
+		while (str[j][i] != '\n')
+		{
+			i++;
+			k++;
+		}
+		k++;
+		j++;
+	}
+	return(k);
+}
+
 int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
 {
 	int		i;
 	int		j;
+	int		z;
 	char	**map_x;
 
-	map_x = (char**)malloc(sizeof(char*) * n + 1);
 	i = 0;
 	j = 0;
+	z = 0;
+	map_x = (char**)malloc(sizeof(char*) * n  + 1);
+
+	while (z <= n)
+	{
+		map_x[z] = (char*)malloc(sizeof(char) * ft_strxlen(map) + 1);
+		z++;
+	}
+
 	map_x[j] = *map;
+
 	while (map_x[j])
 	{
 		while (map[j][i] == '#' || map_x[j][i] == 'x')//ce while detecte et remplace les cases invalide par des X
@@ -136,8 +168,6 @@ int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
 	return(1);
 }
 
-
-
 void	ft_placement(int nbpiece, char ***tab_tetri)
 {
 	char	**grid = NULL;
@@ -157,4 +187,33 @@ void	ft_placement(int nbpiece, char ***tab_tetri)
 		}
 		i++;
 	}
+}
+
+int		main(void)//main de test pour strxlen (strlen avec un char**)
+{
+	char **str;
+	int i;
+
+	i = 0;
+	str = (char**)malloc(sizeof(char*) * 4 + 1);
+
+	while (i < 4)
+	{
+		str[i] = (char*)malloc(sizeof(char) * 5 + 1);
+		i++;
+	}
+	str[i] = NULL;
+
+	str[0] = "salut";
+	str[1] = "salut";
+	str[2] = "salut";
+	str[3] = "salut";
+
+	printf("**str est: %s\n", str[0]);
+	printf("**str est: %s\n", str[1]);
+	printf("**str est: %s\n", str[2]);
+	printf("**str est: %s\n", str[3]);
+	printf("**str est: %s\n", str[4]);
+	printf("la longueur du char **str est: %d\n", ft_strxlen(str));
+
 }
