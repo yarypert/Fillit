@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:18:47 by jorobin           #+#    #+#             */
-/*   Updated: 2017/02/19 13:18:49 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/02/21 12:23:21 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,23 @@ char	find_letter(char **tetri)
 {
 	int i;
 	int j;
-	char k;
+	char letter;
 
 	i = 0;
 	j = 0;
-	k = 'x';
+	letter = 'x';
 
 	while (tetri[j] != NULL)
 	{
 		while (tetri[j][i] == '\n')
 		{
-			if ((tetri[j][i] > 'A' && tetri[j][i] < 'Z') && k == 'x')
-				k = tetri[j][i];
+			if (ft_isalpha(tetri[j][i]) == 1 && letter == 'x')
+				letter = tetri[j][i];
 			i++;
 		}
 		j++;
 	}
-	return (k);
+	return (letter);
 }
 
 int		ft_check(char **grid, char **tetri, int place)
@@ -108,6 +108,34 @@ int		ft_check(char **grid, char **tetri, int place)
 	return(1);
 }
 
+int		*find_x(char **str, int *decal)
+{
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (str[j] != NULL)
+	{
+		while (str[j][i] != '\n')
+		{
+			if (str[j][i] > 'A' && str[j][i] < 'Z')
+			{
+				decal[k] = i;
+				k++;
+			}
+			while (str[j][i] != '\n')
+				i++;
+		}
+		j++;
+		i = 0;
+	}
+	decal[k] = '\0';
+	return(decal);
+}
+
 int		ft_strxlen(char **str)
 {
 	int i;
@@ -135,11 +163,15 @@ int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
 	int		i;
 	int		j;
 	int		k;
-	char	**map_x;
+	int		*decal;
+	static char		**map_x;
 
 	i = 0;
 	j = 0;
 	k = 0;
+	decal = (int*)malloc(sizeof(int) * 4 + 1);
+	decal = find_x(tetri, decal);
+	printf("le tableau de decalage: \n%d\n%d\n%d\n%d\n", decal[0], decal[1], decal[2], decal[3]);
 	map_x = (char**)malloc(sizeof(char*) * n  + 1);
 
 	while (k <= n)
@@ -157,14 +189,15 @@ int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
 		{
 			while (map[j][i] == '#' || map_x[k][i] == 'x')//ce while detecte et remplace les cases invalide par des X
 			{
-				if (map[j][i] == '#')
-					map_x[j][i] = 'x';
+				map_x[j][i] = 'x';
 				i++;
 			}
 			if (ft_check(map, tetri, i) == 0)
+			{
 				map = ft_place(map, tetri, i);//on place le tetri
-				j++;
+				k++;// map_x suivante
 				return(0);
+			}
 			if (ft_check(map, tetri, i) == 1)//pas bon placement
 				map_x[j][i] = 'x';
 			if (ft_check(map, tetri, i) == -1)//la map des x a que des x
@@ -172,7 +205,7 @@ int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
 				clr_map_x(map_x[k]);//clean la map_x
 				if (!(j - 1))//si ya pas de piece avant
 					return(1);//agrandir la map
-				j--; //map_x d'avant
+				k--; //map_x d'avant
 				return(-1);//passer a la piece d'avant
 			}
 		}
