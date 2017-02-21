@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:18:47 by jorobin           #+#    #+#             */
-/*   Updated: 2017/02/21 12:54:23 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/02/21 15:37:07 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,35 +108,41 @@ int		ft_check(char **grid, char **tetri, int place)
 	}
 	return(1);
 }
-
+*/
 int		*find_x(char **str, int *decal)
 {
 	int		i;
 	int		j;
 	int		k;
+	int		temp;
 
 	i = 0;
 	j = 0;
 	k = 0;
+	temp = 0;
+
 	while (str[j] != NULL)
 	{
 		while (str[j][i] != '\n')
 		{
-			if (str[j][i] > 'A' && str[j][i] < 'Z')
+			if (ft_isalpha(str[j][i]) == 1 && temp == 0)
 			{
 				decal[k] = i;
-				k++;
+				temp = 1;
 			}
-			while (str[j][i] != '\n')
-				i++;
+			i++;
 		}
+		if (temp == 0)
+			decal[k] = 0;
+		if (temp != 0)
+			temp = 0;
 		j++;
+		k++;
 		i = 0;
 	}
-	decal[k] = '\0';
 	return(decal);
 }
-*/
+
 int		ft_strxlen(char **str)
 {
 	int i;
@@ -159,7 +165,37 @@ int		ft_strxlen(char **str)
 	}
 	return(k);
 }
-/*
+
+char	*str(char **map)
+{
+	int i;
+	int j;
+	int k;
+	char *str;
+
+	if(!(str = (char*)malloc(sizeof(char) * (ft_strxlen(map)) + 1)))
+		ft_putstr("zizi");
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (map[j] != NULL)
+	{
+		while (map[j][i] != '\n')
+		{
+			str[k] = map[j][i];
+			i++;
+			k++;
+		}
+		str[k] = map[j][i];
+		j++;
+		k++;
+		i = 0;
+	}
+	str[k] = '\0';
+	return(str);
+}
+
 int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
 {
 	int		i;
@@ -173,9 +209,9 @@ int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
 	k = 0;
 	decal = (int*)malloc(sizeof(int) * 4 + 1);
 	decal = find_x(tetri, decal);
+	printf("la longueur de la map est: \n%d\n", ft_strxlen(map));
 	printf("le tableau de decalage: \n%d\n%d\n%d\n%d\n", decal[0], decal[1], decal[2], decal[3]);
 	map_x = (char**)malloc(sizeof(char*) * n  + 1);
-
 	while (k <= n)
 	{
 		map_x[k] = (char*)malloc(sizeof(char) * ft_strxlen(map) + 1);
@@ -183,8 +219,9 @@ int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
 	}
 
 	k = 0;
-	map_x[k] = *map;
-
+	map_x[k] = str(map);//transforme map en char* pour la mettre dans map_x
+	printf("la map_x est:\n%s\n%s\n%s\n%s\n%s\n", map_x[0], map_x[1], map_x[2], map_x[3], map_x[4]);
+/*
 	while (map_x[k][i])
 	{
 		while (map[j][i] != '\n')
@@ -212,8 +249,8 @@ int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
 			}
 		}
 		j++;
-	}
-	return(1);
+	}*/
+	return(0);
 }
 
 void	ft_placement(int nbpiece, char ***tab_tetri)
@@ -222,6 +259,7 @@ void	ft_placement(int nbpiece, char ***tab_tetri)
 	int		i;
 
 	grid = create_grid(nbpiece);
+	printf("la map cree dans ft_placement est: \n%s\n%s\n%s\n%s\n%s\n", grid[0], grid[1], grid[2], grid[3], grid[4]);
 	i = 0;
 	while (tab_tetri[i] != NULL)
 	{
@@ -233,15 +271,19 @@ void	ft_placement(int nbpiece, char ***tab_tetri)
 			if (place_tetri(tab_tetri[i], grid, nbpiece) == -1)
 				i--;
 		}
+		printf("On passe dans le i++ de ft_placement\n");
 		i++;
 	}
 }
-*/
+
 int		main(void)//main de test pour strxlen (strlen avec un char**)
 {
-	char ***str;
+	char ***str;//triple tableau de test
 	int i;
 	int j;
+
+////////////////// MALLOC DU ***STR DE TEST////////////////////////////////////
+
 
 	i = 0;
 	str = (char***)malloc(sizeof(char**) * 4 + 1);
@@ -265,15 +307,29 @@ int		main(void)//main de test pour strxlen (strlen avec un char**)
 
 	str[i] = NULL;
 
-	str[0][0] = "....\n";
+///////////////////////////////////////////////////////////////////////////////
+
+	str[0][0] = "....\n";/////////1ERE PIECE//////////
 	str[0][1] = "..AA\n";
 	str[0][2] = "...A\n";
 	str[0][3] = "...A\n";
 
-	str[1][0] = "..BB\n";
+	str[1][0] = "..BB\n";////////2EME PIECE//////////
 	str[1][1] = "..BB\n";
 	str[1][2] = "....\n";
 	str[1][3] = "....\n";
+
+	str[2][0] = "....\n";///////3EME PIECE///////////
+	str[2][1] = "..C.\n";
+	str[2][2] = "CCC.\n";
+	str[2][3] = "....\n";
+
+	str[3][0] = "....\n";//////4EME PIECE///////////
+	str[3][1] = "....\n";
+	str[3][2] = "....\n";
+	str[3][3] = "DDDD\n";
+
+////////////////// AFFICHAGE DE CHAQUE PIECE (ligne par ligne)/////////////////
 
 	printf("**str est: %s\n", str[0][0]);
 	printf("**str est: %s\n", str[0][1]);
@@ -283,8 +339,24 @@ int		main(void)//main de test pour strxlen (strlen avec un char**)
 	printf("**str est: %s\n", str[1][0]);
 	printf("**str est: %s\n", str[1][1]);
 	printf("**str est: %s\n", str[1][2]);
-	printf("**str est: %s\n", str[1][3]);
-	printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[0]));
-	printf("la longueur du char **str est: %d\n", ft_strxlen(str[1]));
+	printf("**str est: %s\n\n\n", str[1][3]);
+	printf("**str est: %s\n", str[2][0]);
+	printf("**str est: %s\n", str[2][1]);
+	printf("**str est: %s\n", str[2][2]);
+	printf("**str est: %s\n\n\n", str[2][3]);
+	printf("**str est: %s\n", str[3][0]);
+	printf("**str est: %s\n", str[3][1]);
+	printf("**str est: %s\n", str[3][2]);
+	printf("**str est: %s\n\n\n", str[3][3]);
 
+/////////// TEST DE LA FONCTION FT_STRXLEN POUR LA LONG D'UN CHAR**////////////
+
+	printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[0]));
+	printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[1]));
+	printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[2]));
+	printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[3]));
+
+///////////////////////////////////////////////////////////////////////////////
+
+	ft_placement(4, str);
 }
