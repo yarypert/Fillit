@@ -6,24 +6,22 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:18:47 by jorobin           #+#    #+#             */
-/*   Updated: 2017/02/21 15:42:45 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/02/21 17:59:19 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/fillit.h"
 
-/*
+
 char	*clr_map_x(char *map)
 {
 	int		i;
 
 	i = 0;
-	while (map[i])
+	while (map[i] != '\0')
 	{
-		while (map[i] != '\n')
-		{
+		if (map[i] != '\n')
 			map[i] = '.';
-		}
 		i++;
 	}
 	return(map);
@@ -62,7 +60,7 @@ int		ft_check(char **grid, char **tetri, int place)
 //c'est a dire si on peut placer le tetri **tab_tetri a cet endroit
 //si on ne peut pas on renvoit 1
 //si on peut on renvoit 0
-
+/*
 	int i;
 	int j;
 	int k;
@@ -105,10 +103,10 @@ int		ft_check(char **grid, char **tetri, int place)
 			}
 		}
 		return(0);
-	}
-	return(1);
+	}*/
+	return(-1);
 }
-*/
+
 int		*find_x(char **str, int *decal)
 {
 	int		i;
@@ -196,60 +194,99 @@ char	*str(char **map)
 	return(str);
 }
 
-int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
+char **creat_map_x(char **map, int n)
 {
-	int		i;
-	int		j;
-	int		k;
-	int		*decal;
-	static char		**map_x;
+	int i;
+	int j;
+	int k;
+	char **map_x;
 
-	i = 0;
-	j = 0;
-	k = 0;
-	decal = (int*)malloc(sizeof(int) * 4 + 1);
-	decal = find_x(tetri, decal);
-	printf("la longueur de la map est: \n%d\n", ft_strxlen(map));
-	printf("le tableau de decalage: \n%d\n%d\n%d\n%d\n", decal[0], decal[1], decal[2], decal[3]);
-	map_x = (char**)malloc(sizeof(char*) * n  + 1);
+	map_x = (char**)malloc(sizeof(char*) * n + 1);
 	while (k <= n)
 	{
 		map_x[k] = (char*)malloc(sizeof(char) * ft_strxlen(map) + 1);
 		k++;
 	}
+	map_x[k + 1] = NULL;
 
 	k = 0;
 	map_x[k] = str(map);//transforme map en char* pour la mettre dans map_x
 	printf("la map_x est:\n%s%s%s%s%s", map_x[0], map_x[1], map_x[2], map_x[3], map_x[4]);
-/*
-	while (map_x[k][i])
+	return (map_x);
+}
+
+int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
+{
+	int		i;
+	int		j;
+	int		k;
+	int		l;
+	int		*decal;
+	char	**map_x;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	l = 0;
+	decal = (int*)malloc(sizeof(int) * 4 + 1);
+	decal = find_x(tetri, decal);
+	//printf("la longueur de la map est: \n%d\n", ft_strxlen(map));
+	//printf("le tableau de decalage: \n%d\n%d\n%d\n%d\n", decal[0], decal[1], decal[2], decal[3]);
+	map_x = (creat_map_x(map, n));
+	k = 0;
+
+	while (map_x[k] != NULL)
 	{
-		while (map[j][i] != '\n')
+		while (map_x[k][l] != '\0')
 		{
-			while (map[j][i] == '#' || map_x[k][i] == 'x')//ce while detecte et remplace les cases invalide par des X
+			while (map[j][i] != '\n')
 			{
-				map_x[j][i] = 'x';
-				i++;
+				while (ft_isalpha(map[j][i]) == 1 || map_x[k][l] == 'x')
+				{
+					map_x[k][i] = 'x';
+					i++;
+					l++;
+					ft_putstr("i = ");
+					ft_putnbr(i);
+					ft_putchar('\n');
+				}
+				if (ft_check(map, tetri, i) == 0)
+				{
+					map = ft_place(map, tetri, i);//on place le tetri
+					k++;// map_x suivante
+					return(0);
+				}
+				else if (ft_check(map, tetri, i) == 1)//pas bon placement
+				{
+					map_x[k][l] = 'x';
+					ft_putstr("map_x[0] = ");
+					ft_putstr(map_x[0]);
+					ft_putchar('\n');
+					ft_putstr("map[j] = ");
+					ft_putstr(map[0]);
+					ft_putstr(map[1]);
+					ft_putstr(map[2]);
+					ft_putstr(map[3]);
+					ft_putchar('\n');
+				}
+				else if(ft_check(map, tetri, i) == -1)//la map des x a que des x
+				{
+					clr_map_x(map_x[k]);//clean la map_x
+					if (!(map_x[k - 1]))//si ya pas de piece avant
+						return(1);//agrandir la map
+					k--; //map_x d'avant
+					return(-1);//passer a la piece d'avant
+				}
 			}
-			if (ft_check(map, tetri, i) == 0)
-			{
-				map = ft_place(map, tetri, i);//on place le tetri
-				k++;// map_x suivante
-				return(0);
-			}
-			if (ft_check(map, tetri, i) == 1)//pas bon placement
-				map_x[j][i] = 'x';
-			if (ft_check(map, tetri, i) == -1)//la map des x a que des x
-			{
-				clr_map_x(map_x[k]);//clean la map_x
-				if (!(j - 1))//si ya pas de piece avant
-					return(1);//agrandir la map
-				k--; //map_x d'avant
-				return(-1);//passer a la piece d'avant
-			}
+			j++;
+			ft_putnbr(l);
+			l++;
+			i = 0;
+			ft_putstr("test apres \n");
 		}
-		j++;
-	}*/
+		k++;
+	}
+	ft_putstr("sort de la boucle");
 	return(0);
 }
 
@@ -259,7 +296,7 @@ void	ft_placement(int nbpiece, char ***tab_tetri)
 	int		i;
 
 	grid = create_grid(nbpiece);
-	printf("la map cree dans ft_placement est: \n%s\n%s\n%s\n%s\n%s\n", grid[0], grid[1], grid[2], grid[3], grid[4]);
+	//printf("la map cree dans ft_placement est: \n%s%s%s%s%s\n", grid[0], grid[1], grid[2], grid[3], grid[4]);
 	i = 0;
 	while (tab_tetri[i] != NULL)
 	{
@@ -267,11 +304,14 @@ void	ft_placement(int nbpiece, char ***tab_tetri)
 		while (place_tetri(tab_tetri[i], grid, nbpiece) != 0)//tant qu'on a pas bien place une piece
 		{
 			if (place_tetri(tab_tetri[i], grid, nbpiece) == 1)//plus de possibilite d'aller une piece en arriere
-				grid_1_up(i);//agrandir la map de 1
+			{
+				ft_putstr("zizi =");//agrandir la map de 1
+				ft_putstr(str(grid_1_up(i)));//agrandir la map de 1
+			}
 			if (place_tetri(tab_tetri[i], grid, nbpiece) == -1)
 				i--;
 		}
-		printf("On passe dans le i++ de ft_placement\n");
+	//	printf("On passe dans le i++ de ft_placement\n");
 		i++;
 	}
 }
@@ -331,31 +371,30 @@ int		main(void)//main de test pour strxlen (strlen avec un char**)
 
 ////////////////// AFFICHAGE DE CHAQUE PIECE (ligne par ligne)/////////////////
 
-	printf("**str est: %s\n", str[0][0]);
-	printf("**str est: %s\n", str[0][1]);
-	printf("**str est: %s\n", str[0][2]);
-	printf("**str est: %s\n", str[0][3]);
+/*	printf("**str est: %s", str[0][0]);
+	printf("**str est: %s", str[0][1]);
+	printf("**str est: %s", str[0][2]);
+	printf("**str est: %s", str[0][3]);
 	printf("**str est: %s\n\n\n", str[0][4]);
-	printf("**str est: %s\n", str[1][0]);
-	printf("**str est: %s\n", str[1][1]);
-	printf("**str est: %s\n", str[1][2]);
+	printf("**str est: %s", str[1][0]);
+	printf("**str est: %s", str[1][1]);
+	printf("**str est: %s", str[1][2]);
 	printf("**str est: %s\n\n\n", str[1][3]);
-	printf("**str est: %s\n", str[2][0]);
-	printf("**str est: %s\n", str[2][1]);
-	printf("**str est: %s\n", str[2][2]);
+	printf("**str est: %s", str[2][0]);
+	printf("**str est: %s", str[2][1]);
+	printf("**str est: %s", str[2][2]);
 	printf("**str est: %s\n\n\n", str[2][3]);
-	printf("**str est: %s\n", str[3][0]);
-	printf("**str est: %s\n", str[3][1]);
-	printf("**str est: %s\n", str[3][2]);
+	printf("**str est: %s", str[3][0]);
+	printf("**str est: %s", str[3][1]);
+	printf("**str est: %s", str[3][2]);
 	printf("**str est: %s\n\n\n", str[3][3]);
 
-/////////// TEST DE LA FONCTION FT_STRXLEN POUR LA LONG D'UN CHAR**////////////
 
 	printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[0]));
 	printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[1]));
 	printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[2]));
 	printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[3]));
-
+*/
 ///////////////////////////////////////////////////////////////////////////////
 
 	ft_placement(4, str);
