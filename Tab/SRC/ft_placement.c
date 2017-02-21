@@ -6,12 +6,13 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:18:47 by jorobin           #+#    #+#             */
-/*   Updated: 2017/02/21 12:23:21 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/02/21 12:54:23 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/fillit.h"
 
+/*
 char	*clr_map_x(char *map)
 {
 	int		i;
@@ -135,7 +136,7 @@ int		*find_x(char **str, int *decal)
 	decal[k] = '\0';
 	return(decal);
 }
-
+*/
 int		ft_strxlen(char **str)
 {
 	int i;
@@ -145,19 +146,20 @@ int		ft_strxlen(char **str)
 	i = 0;
 	j = 0;
 	k = 0;
-	while (str[j] != NULL)
+	while (str[j] != NULL && str[j][i] != '\0')
 	{
 		while (str[j][i] != '\n')
 		{
 			i++;
 			k++;
 		}
+		i = 0;
 		k++;
 		j++;
 	}
 	return(k);
 }
-
+/*
 int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
 {
 	int		i;
@@ -234,32 +236,55 @@ void	ft_placement(int nbpiece, char ***tab_tetri)
 		i++;
 	}
 }
-
+*/
 int		main(void)//main de test pour strxlen (strlen avec un char**)
 {
-	char **str;
+	char ***str;
 	int i;
+	int j;
 
 	i = 0;
-	str = (char**)malloc(sizeof(char*) * 4 + 1);
+	str = (char***)malloc(sizeof(char**) * 4 + 1);
 
 	while (i < 4)
 	{
-		str[i] = (char*)malloc(sizeof(char) * 5 + 1);
+		str[i] = (char**)malloc(sizeof(char*) * 4 + 1);
 		i++;
 	}
+
+	i = 0;
+	while (i < 4)
+	{
+		while (j < 5)
+		{
+			str[i][j] = (char*)malloc(sizeof(char) * 5 + 1);
+			j++;
+		}
+		i++;
+	}
+
 	str[i] = NULL;
 
-	str[0] = "salut";
-	str[1] = "salut";
-	str[2] = "salut";
-	str[3] = "salut";
+	str[0][0] = "....\n";
+	str[0][1] = "..AA\n";
+	str[0][2] = "...A\n";
+	str[0][3] = "...A\n";
 
-	printf("**str est: %s\n", str[0]);
-	printf("**str est: %s\n", str[1]);
-	printf("**str est: %s\n", str[2]);
-	printf("**str est: %s\n", str[3]);
-	printf("**str est: %s\n", str[4]);
-	printf("la longueur du char **str est: %d\n", ft_strxlen(str));
+	str[1][0] = "..BB\n";
+	str[1][1] = "..BB\n";
+	str[1][2] = "....\n";
+	str[1][3] = "....\n";
+
+	printf("**str est: %s\n", str[0][0]);
+	printf("**str est: %s\n", str[0][1]);
+	printf("**str est: %s\n", str[0][2]);
+	printf("**str est: %s\n", str[0][3]);
+	printf("**str est: %s\n\n\n", str[0][4]);
+	printf("**str est: %s\n", str[1][0]);
+	printf("**str est: %s\n", str[1][1]);
+	printf("**str est: %s\n", str[1][2]);
+	printf("**str est: %s\n", str[1][3]);
+	printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[0]));
+	printf("la longueur du char **str est: %d\n", ft_strxlen(str[1]));
 
 }
