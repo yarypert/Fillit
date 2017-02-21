@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:18:47 by jorobin           #+#    #+#             */
-/*   Updated: 2017/02/21 15:37:07 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/02/21 15:42:45 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,7 @@ int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
 
 	k = 0;
 	map_x[k] = str(map);//transforme map en char* pour la mettre dans map_x
-	printf("la map_x est:\n%s\n%s\n%s\n%s\n%s\n", map_x[0], map_x[1], map_x[2], map_x[3], map_x[4]);
+	printf("la map_x est:\n%s%s%s%s%s", map_x[0], map_x[1], map_x[2], map_x[3], map_x[4]);
 /*
 	while (map_x[k][i])
 	{
