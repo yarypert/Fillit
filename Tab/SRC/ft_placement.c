@@ -221,8 +221,11 @@ void	ft_placement(int nbpiece, char ***tetri)//algo
 	printf("la map cree dans ft_placement est: \n%s%s%s%s%s\n", grid[0], grid[1], grid[2], grid[3], grid[4]);
 	i = 0;
 	j = 0;
-	while (tetri[i] != NULL)
+	while (i != nbpiece)
 	{
+		ft_putstr("tetri de i: ");
+		ft_putstr(str(tetri[i]));
+		ft_putstr(" \n");
 		move_tetri(tetri[i]);
 		while (grid[j][k] != '\0')
 		{
@@ -236,6 +239,7 @@ void	ft_placement(int nbpiece, char ***tetri)//algo
 						place[i] = k;//on save le placement a dans le tab 
 						printf("place de [i] est: %d\n", place[i]);
 						i++;
+						printf("i = %d\n", i); 
 						printf("on avance d'une piece\n"); 
 						k = 0;
 					}
@@ -259,6 +263,7 @@ void	ft_placement(int nbpiece, char ***tetri)//algo
 		else if (i != 0)
 			i--;
 	}
+	printf("olol\n");
 }
 
 int		main(void)//main de test pour strxlen (strlen avec un char**)
