@@ -141,6 +141,29 @@ int		*find_x(char **str, int *decal)//trouve le xmin de chaque ligne
 	return(decal);
 }
 
+int		ft_strxlen(char **str)//long d'un char **
+{
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (str[j] != NULL && str[j][i] != '\0')
+	{
+		while (str[j][i] != '\n')
+		{
+			i++;
+			k++;
+		}
+		i = 0;
+		k++;
+		j++;
+	}
+	return(k);
+}
+
 char	*str(char **map)//transforme un char ** en char *
 {
 	int i;
@@ -230,7 +253,7 @@ void	ft_placement(int nbpiece, char ***tetri)//algo
 		if (i == 0)
 		{
 			printf("grid avant 1up : %s\n", str(grid));
-			grid = grid_1_up(i);
+			//grid = grid_1_up(i);
 			printf("grid apres 1up : %s\n", str(grid));
 		}
 		else if (i != 0)
