@@ -104,7 +104,7 @@ int		ft_check(char **grid, char **tetri, int place)
 		}
 		return(0);
 	}*/
-	return(-1);
+	return(0);
 }
 
 int		*find_x(char **str, int *decal)
@@ -194,125 +194,70 @@ char	*str(char **map)
 	return(str);
 }
 
-char **creat_map_x(char **map, int n)
-{
-	int i;
-	int j;
-	int k;
-	char **map_x;
-
-	map_x = (char**)malloc(sizeof(char*) * n + 1);
-	while (k <= n)
-	{
-		map_x[k] = (char*)malloc(sizeof(char) * ft_strxlen(map) + 1);
-		k++;
-	}
-	map_x[k + 1] = NULL;
-
-	k = 0;
-	map_x[k] = str(map);//transforme map en char* pour la mettre dans map_x
-	printf("la map_x est:\n%s%s%s%s%s", map_x[0], map_x[1], map_x[2], map_x[3], map_x[4]);
-	return (map_x);
-}
-
-int		place_tetri(char **tetri, char **map, int n)//n est le nb de piece
+int		*place_zero(int *place)
 {
 	int		i;
-	int		j;
-	int		k;
-	int		l;
-	int		*decal;
-	char	**map_x;
 
 	i = 0;
-	j = 0;
-	k = 0;
-	l = 0;
-	decal = (int*)malloc(sizeof(int) * 4 + 1);
-	decal = find_x(tetri, decal);
-	//printf("la longueur de la map est: \n%d\n", ft_strxlen(map));
-	//printf("le tableau de decalage: \n%d\n%d\n%d\n%d\n", decal[0], decal[1], decal[2], decal[3]);
-	map_x = (creat_map_x(map, n));
-	k = 0;
-
-	while (map_x[k] != NULL)
+	while (place[i] != '\0')
 	{
-		while (map_x[k][l] != '\0')
-		{
-			while (map[j][i] != '\n')
-			{
-				while (ft_isalpha(map[j][i]) == 1 || map_x[k][l] == 'x')
-				{
-					map_x[k][i] = 'x';
-					i++;
-					l++;
-					ft_putstr("i = ");
-					ft_putnbr(i);
-					ft_putchar('\n');
-				}
-				if (ft_check(map, tetri, i) == 0)
-				{
-					map = ft_place(map, tetri, i);//on place le tetri
-					k++;// map_x suivante
-					return(0);
-				}
-				else if (ft_check(map, tetri, i) == 1)//pas bon placement
-				{
-					map_x[k][l] = 'x';
-					ft_putstr("map_x[0] = ");
-					ft_putstr(map_x[0]);
-					ft_putchar('\n');
-					ft_putstr("map[j] = ");
-					ft_putstr(map[0]);
-					ft_putstr(map[1]);
-					ft_putstr(map[2]);
-					ft_putstr(map[3]);
-					ft_putchar('\n');
-				}
-				else if(ft_check(map, tetri, i) == -1)//la map des x a que des x
-				{
-					clr_map_x(map_x[k]);//clean la map_x
-					if (!(map_x[k - 1]))//si ya pas de piece avant
-						return(1);//agrandir la map
-					k--; //map_x d'avant
-					return(-1);//passer a la piece d'avant
-				}
-			}
-			j++;
-			ft_putnbr(l);
-			l++;
-			i = 0;
-			ft_putstr("test apres \n");
-		}
-		k++;
+		place[i] = 0;
+		i++;
 	}
-	ft_putstr("sort de la boucle");
-	return(0);
+	return (place);
 }
 
-void	ft_placement(int nbpiece, char ***tab_tetri)
+void	ft_placement(int nbpiece, char ***tetri)
 {
 	char	**grid = NULL;
 	int		i;
+	int		j;
+	int		k;
+	int		*place;
 
+	place = (int*)malloc(sizeof(int) * nbpiece + 1);
+	place = place_zero(place);
 	grid = create_grid(nbpiece);
-	//printf("la map cree dans ft_placement est: \n%s%s%s%s%s\n", grid[0], grid[1], grid[2], grid[3], grid[4]);
+	printf("la map cree dans ft_placement est: \n%s%s%s%s%s\n", grid[0], grid[1], grid[2], grid[3], grid[4]);
 	i = 0;
-	while (tab_tetri[i] != NULL)
+	j = 0;
+	while (tetri[i] != NULL)
 	{
-		move_tetri(tab_tetri[i]);
-		while (place_tetri(tab_tetri[i], grid, nbpiece) != 0)//tant qu'on a pas bien place une piece
+		move_tetri(tetri[i]);
+		while (grid[j][k] != '\0')
 		{
-			if (place_tetri(tab_tetri[i], grid, nbpiece) == 1)//plus de possibilite d'aller une piece en arriere
+			while (grid[j][k] != '\n')
 			{
-				ft_putstr("zizi =");//agrandir la map de 1
-				ft_putstr(str(grid_1_up(i)));//agrandir la map de 1
+				if (grid[j][k] == '.')
+				{
+					if (ft_check(grid, tetri[i], (place[i] + k)) == 0)//placement valide
+					{
+						//grid = ft_place();//on place la piece 
+						place[i] = k;//on save le placement a dans le tab 
+						printf("place de [i] est: %d\n", place[i]);
+						i++;
+						printf("on avance d'une piece\n"); 
+						k = 0;
+					}
+					else if (ft_check(grid, tetri[i], k) == 1)//placement invalide
+					{
+						k++;//on avance
+					}
+				}
+				k++;
 			}
-			if (place_tetri(tab_tetri[i], grid, nbpiece) == -1)
-				i--;
+			j++;
+			k = 0;
 		}
-	//	printf("On passe dans le i++ de ft_placement\n");
-		i++;
+		place[i] = 0;
+		if (i == 0)
+		{
+			printf("grid avant 1up : %s\n", str(grid));
+			grid = grid_1_up(i);
+			printf("grid apres 1up : %s\n", str(grid));
+		}
+		else if (i != 0)
+			i--;
 	}
 }
 
