@@ -13,7 +13,7 @@
 #include "../Includes/fillit.h"
 
 
-char	*clr_map_x(char *map)
+char	*clr_map(char *map)//clear la map
 {
 	int		i;
 
@@ -27,12 +27,12 @@ char	*clr_map_x(char *map)
 	return(map);
 }
 
-char	**ft_place(char **grid, char **tetri, int place)
+char	**ft_place(char **grid, char **tetri, int place)//placement a relier a check
 {
 	return(grid);
 }
 
-char	find_letter(char **tetri)
+char	find_letter(char **tetri)//renvoit la lettre de la piece
 {
 	int i;
 	int j;
@@ -46,8 +46,8 @@ char	find_letter(char **tetri)
 	{
 		while (tetri[j][i] == '\n')
 		{
-			if (ft_isalpha(tetri[j][i]) == 1 && letter == 'x')
-				letter = tetri[j][i];
+			if (ft_isalpha(tetri[j][i]) == 1)
+				return(tetri[j][i]);
 			i++;
 		}
 		j++;
@@ -107,7 +107,7 @@ int		ft_check(char **grid, char **tetri, int place)
 	return(0);
 }
 
-int		*find_x(char **str, int *decal)
+int		*find_x(char **str, int *decal)//trouve le xmin de chaque ligne
 {
 	int		i;
 	int		j;
@@ -141,30 +141,7 @@ int		*find_x(char **str, int *decal)
 	return(decal);
 }
 
-int		ft_strxlen(char **str)
-{
-	int i;
-	int j;
-	int k;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	while (str[j] != NULL && str[j][i] != '\0')
-	{
-		while (str[j][i] != '\n')
-		{
-			i++;
-			k++;
-		}
-		i = 0;
-		k++;
-		j++;
-	}
-	return(k);
-}
-
-char	*str(char **map)
+char	*str(char **map)//transforme un char ** en char *
 {
 	int i;
 	int j;
@@ -194,7 +171,7 @@ char	*str(char **map)
 	return(str);
 }
 
-int		*place_zero(int *place)
+int		*place_zero(int *place)//met des 0 dans un char*
 {
 	int		i;
 
@@ -207,7 +184,7 @@ int		*place_zero(int *place)
 	return (place);
 }
 
-void	ft_placement(int nbpiece, char ***tetri)
+void	ft_placement(int nbpiece, char ***tetri)//algo
 {
 	char	**grid = NULL;
 	int		i;
@@ -228,7 +205,7 @@ void	ft_placement(int nbpiece, char ***tetri)
 		{
 			while (grid[j][k] != '\n')
 			{
-				if (grid[j][k] == '.')
+				while (grid[j][k] == '.')
 				{
 					if (ft_check(grid, tetri[i], (place[i] + k)) == 0)//placement valide
 					{
