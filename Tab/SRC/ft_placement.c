@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:18:47 by jorobin           #+#    #+#             */
-/*   Updated: 2017/02/21 17:59:19 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/02/23 16:08:33 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,54 +55,54 @@ char	find_letter(char **tetri)//renvoit la lettre de la piece
 	return (letter);
 }
 
-int		ft_check(char **grid, char **tetri, int place)
+int		ft_check(char **grid, char **tetri, int x, int y, int *place)
 {//fonction check si la place "int place" est valide
-//c'est a dire si on peut placer le tetri **tab_tetri a cet endroit
-//si on ne peut pas on renvoit 1
-//si on peut on renvoit 0
-/*
-	int i;
-	int j;
-	int k;
-	int l;
-	char let;
+	//c'est a dire si on peut placer le tetri **tab_tetri a cet endroit
+	//si on ne peut pas on renvoit 1
+	//si on peut on renvoit 0
+	/*
+	   int i;
+	   int j;
+	   int k;
+	   int l;
+	   char let;
 
-	let = find_letter(tetri);
-	i = place;
-	j = 0;
-	k = 0;
-	l = 0;
-	while (grid[j] != NULL)
+	   let = find_letter(tetri);
+	   i = place;
+	   j = 0;
+	   k = 0;
+	   l = 0;
+	   while (grid[j] != NULL)
+	   {
+	   while (k < 4 || tetri[j][i])
+	   {
+	   while (grid[j][i] != '\n')
+	   {
+	   if (grid[j][i] == '.')
+	   {
+	   while (tetri[j][l] == '.')
+	   l++;
+	   grid[j][i] = tetri[j][l];
+	   if (k != 0)//si une partie de piece est deja placee
+	   {
+	//regarder si ca forme un motif de tetri valide
+	if (grid[j][i - 1] != let || grid[j][i + 1] != let || grid[j][i + 5] != let)
+	return(1);
+	}
+	k++;
+	l++;
+	i++;
+	}
+	}
+	j++;
+	if (grid[j][i] == '\n')
 	{
-		while (k < 4 || tetri[j][i])
-		{
-			while (grid[j][i] != '\n')
-			{
-				if (grid[j][i] == '.')
-				{
-					while (tetri[j][l] == '.')
-						l++;
-					grid[j][i] = tetri[j][l];
-					if (k != 0)//si une partie de piece est deja placee
-					{
-						//regarder si ca forme un motif de tetri valide
-						if (grid[j][i - 1] != let || grid[j][i + 1] != let || grid[j][i + 5] != let)
-							return(1);
-					}
-					k++;
-					l++;
-					i++;
-				}
-			}
-			j++;
-			if (grid[j][i] == '\n')
-			{
-				if (tetri[j + 1][i] != '.' || tetri[j + 1][i] != '\n')
-					return(1);
-				i++;
-			}
-		}
-		return(0);
+	if (tetri[j + 1][i] != '.' || tetri[j + 1][i] != '\n')
+	return(1);
+	i++;
+	}
+	}
+	return(0);
 	}*/
 	return(0);
 }
@@ -213,6 +213,7 @@ void	ft_placement(int nbpiece, char ***tetri)//algo
 	int		i;
 	int		j;
 	int		k;
+	int		l;
 	int		*place;
 
 	place = (int*)malloc(sizeof(int) * nbpiece + 1);
@@ -221,131 +222,129 @@ void	ft_placement(int nbpiece, char ***tetri)//algo
 	printf("la map cree dans ft_placement est: \n%s%s%s%s%s\n", grid[0], grid[1], grid[2], grid[3], grid[4]);
 	i = 0;
 	j = 0;
-	while (i != nbpiece)
+	k = 0;
+	l = 0;
+
+	while (tetri[i] != NULL)
 	{
-		ft_putstr("tetri de i: ");
-		ft_putstr(str(tetri[i]));
-		ft_putstr(" \n");
-		move_tetri(tetri[i]);
-		while (grid[j][k] != '\0')
+		while (grid[j] && tetri[i])
 		{
-			while (grid[j][k] != '\n')
+			if (grid[j][k] == '.')
 			{
-				while (grid[j][k] == '.')
+				if ((ft_check(grid, tetri[i], j, k, place)) == 0)
 				{
-					if (ft_check(grid, tetri[i], (place[i] + k)) == 0)//placement valide
-					{
-						//grid = ft_place();//on place la piece 
-						place[i] = k;//on save le placement a dans le tab 
-						printf("place de [i] est: %d\n", place[i]);
-						i++;
-						printf("i = %d\n", i); 
-						printf("on avance d'une piece\n"); 
-						k = 0;
-					}
-					else if (ft_check(grid, tetri[i], k) == 1)//placement invalide
-					{
-						k++;//on avance
-					}
+					place[l] = k;
+					place[l + 1] = j;
+					//grid = place_tetri(grid, tetri[i], j, k, place);
+					printf("place[i] =  %d\n", place[i]);
+					printf("place[i+1] =  %d\n", place[i + 1]);
+					printf("i =  %d\n", i);
+					printf("l =  %d\n", l);
+					printf("j =  %d\n", j);
+					printf("k =  %d\n", k);
+					l = l + 2;
+					i++;
+					k = 0;
+					j = 0;
 				}
-				k++;
+				else if ((ft_check(grid, tetri[i], j, k, place)) == 1)
+						k++;
 			}
-			j++;
-			k = 0;
+			if (grid[j][k] != '.')
+				k++;
 		}
-		place[i] = 0;
+		//grid = clr_piece;
 		if (i == 0)
-		{
-			printf("grid avant 1up : %s\n", str(grid));
-			//grid = grid_1_up(i);
-			printf("grid apres 1up : %s\n", str(grid));
-		}
-		else if (i != 0)
+			//grid_1_up();
+		if (i != 0)
 			i--;
 	}
-	printf("olol\n");
 }
 
-int		main(void)//main de test pour strxlen (strlen avec un char**)
-{
-	char ***str;//triple tableau de test
-	int i;
-	int j;
-
-////////////////// MALLOC DU ***STR DE TEST////////////////////////////////////
-
-
-	i = 0;
-	str = (char***)malloc(sizeof(char**) * 4 + 1);
-
-	while (i < 4)
+	int		main(void)//main de test pour strxlen (strlen avec un char**)
 	{
-		str[i] = (char**)malloc(sizeof(char*) * 4 + 1);
-		i++;
-	}
+		char ***str;//triple tableau de test
+		int i;
+		int j;
 
-	i = 0;
-	while (i < 4)
-	{
-		while (j < 5)
+		////////////////// MALLOC DU ***STR DE TEST////////////////////////////////////
+
+
+		i = 0;
+		str = (char***)malloc(sizeof(char**) * 4 + 1);
+
+		while (i < 4)
 		{
-			str[i][j] = (char*)malloc(sizeof(char) * 5 + 1);
-			j++;
+			str[i] = (char**)malloc(sizeof(char*) * 4 + 1);
+			i++;
 		}
-		i++;
+
+		i = 0;
+		while (i < 4)
+		{
+			while (j < 5)
+			{
+				str[i][j] = (char*)malloc(sizeof(char) * 5 + 1);
+				j++;
+			}
+			i++;
+		}
+
+		str[i] = NULL;
+
+		///////////////////////////////////////////////////////////////////////////////
+
+		str[0][0] = "....\n\0";/////////1ERE PIECE//////////
+		str[0][1] = "..AA\n\0";
+		str[0][2] = "...A\n\0";
+		str[0][3] = "...A\n\0";
+		str[0][4] = "\0";
+
+		str[1][0] = "..BB\n\0";////////2EME PIECE//////////
+		str[1][1] = "..BB\n\0";
+		str[1][2] = "....\n\0";
+		str[1][3] = "....\n\0";
+		str[1][4] = "\0";
+
+		str[2][0] = "....\n\0";///////3EME PIECE///////////
+		str[2][1] = "..C.\n\0";
+		str[2][2] = "CCC.\n\0";
+		str[2][3] = "....\n\0";
+		str[2][4] = "\0";
+
+		str[3][0] = "....\n\0";//////4EME PIECE///////////
+		str[3][1] = "....\n\0";
+		str[3][2] = "....\n\0";
+		str[3][3] = "DDDD\n\0";
+		str[3][4] = "\0";
+
+		////////////////// AFFICHAGE DE CHAQUE PIECE (ligne par ligne)/////////////////
+
+		/*	printf("**str est: %s", str[0][0]);
+			printf("**str est: %s", str[0][1]);
+			printf("**str est: %s", str[0][2]);
+			printf("**str est: %s", str[0][3]);
+			printf("**str est: %s\n\n\n", str[0][4]);
+			printf("**str est: %s", str[1][0]);
+			printf("**str est: %s", str[1][1]);
+			printf("**str est: %s", str[1][2]);
+			printf("**str est: %s\n\n\n", str[1][3]);
+			printf("**str est: %s", str[2][0]);
+			printf("**str est: %s", str[2][1]);
+			printf("**str est: %s", str[2][2]);
+			printf("**str est: %s\n\n\n", str[2][3]);
+			printf("**str est: %s", str[3][0]);
+			printf("**str est: %s", str[3][1]);
+			printf("**str est: %s", str[3][2]);
+			printf("**str est: %s\n\n\n", str[3][3]);
+
+
+			printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[0]));
+			printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[1]));
+			printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[2]));
+			printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[3]));
+			*/
+		///////////////////////////////////////////////////////////////////////////////
+
+		ft_placement(4, str);
 	}
-
-	str[i] = NULL;
-
-///////////////////////////////////////////////////////////////////////////////
-
-	str[0][0] = "....\n";/////////1ERE PIECE//////////
-	str[0][1] = "..AA\n";
-	str[0][2] = "...A\n";
-	str[0][3] = "...A\n";
-
-	str[1][0] = "..BB\n";////////2EME PIECE//////////
-	str[1][1] = "..BB\n";
-	str[1][2] = "....\n";
-	str[1][3] = "....\n";
-
-	str[2][0] = "....\n";///////3EME PIECE///////////
-	str[2][1] = "..C.\n";
-	str[2][2] = "CCC.\n";
-	str[2][3] = "....\n";
-
-	str[3][0] = "....\n";//////4EME PIECE///////////
-	str[3][1] = "....\n";
-	str[3][2] = "....\n";
-	str[3][3] = "DDDD\n";
-
-////////////////// AFFICHAGE DE CHAQUE PIECE (ligne par ligne)/////////////////
-
-/*	printf("**str est: %s", str[0][0]);
-	printf("**str est: %s", str[0][1]);
-	printf("**str est: %s", str[0][2]);
-	printf("**str est: %s", str[0][3]);
-	printf("**str est: %s\n\n\n", str[0][4]);
-	printf("**str est: %s", str[1][0]);
-	printf("**str est: %s", str[1][1]);
-	printf("**str est: %s", str[1][2]);
-	printf("**str est: %s\n\n\n", str[1][3]);
-	printf("**str est: %s", str[2][0]);
-	printf("**str est: %s", str[2][1]);
-	printf("**str est: %s", str[2][2]);
-	printf("**str est: %s\n\n\n", str[2][3]);
-	printf("**str est: %s", str[3][0]);
-	printf("**str est: %s", str[3][1]);
-	printf("**str est: %s", str[3][2]);
-	printf("**str est: %s\n\n\n", str[3][3]);
-
-
-	printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[0]));
-	printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[1]));
-	printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[2]));
-	printf("la longueur du char **str est: %d\n\n", ft_strxlen(str[3]));
-*/
-///////////////////////////////////////////////////////////////////////////////
-
-	ft_placement(4, str);
-}
