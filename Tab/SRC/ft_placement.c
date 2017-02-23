@@ -55,55 +55,26 @@ char	find_letter(char **tetri)//renvoit la lettre de la piece
 	return (letter);
 }
 
-int		ft_check(char **grid, char **tetri, int x, int y, int *place)
+int		ft_check(char **grid, char **tetri, int *place, int n)
 {//fonction check si la place "int place" est valide
 	//c'est a dire si on peut placer le tetri **tab_tetri a cet endroit
 	//si on ne peut pas on renvoit 1
 	//si on peut on renvoit 0
-	/*
-	   int i;
-	   int j;
-	   int k;
-	   int l;
-	   char let;
+	int		i;
+	int		j;
+	int		k;
 
-	   let = find_letter(tetri);
-	   i = place;
-	   j = 0;
-	   k = 0;
-	   l = 0;
-	   while (grid[j] != NULL)
-	   {
-	   while (k < 4 || tetri[j][i])
-	   {
-	   while (grid[j][i] != '\n')
-	   {
-	   if (grid[j][i] == '.')
-	   {
-	   while (tetri[j][l] == '.')
-	   l++;
-	   grid[j][i] = tetri[j][l];
-	   if (k != 0)//si une partie de piece est deja placee
-	   {
-	//regarder si ca forme un motif de tetri valide
-	if (grid[j][i - 1] != let || grid[j][i + 1] != let || grid[j][i + 5] != let)
-	return(1);
-	}
-	k++;
-	l++;
-	i++;
-	}
-	}
-	j++;
-	if (grid[j][i] == '\n')
+	i = 0;
+	j = 0;
+	k = 0;
+	while ((j != place[n + 1] && k != place[n]) && (find_letter(tetri) != 'A'))
 	{
-	if (tetri[j + 1][i] != '.' || tetri[j + 1][i] != '\n')
-	return(1);
-	i++;
+		while (grid[j][k] != '\n')
+		{
+			k++;
+		}
+		j++;
 	}
-	}
-	return(0);
-	}*/
 	return(0);
 }
 
@@ -231,10 +202,10 @@ void	ft_placement(int nbpiece, char ***tetri)//algo
 		{
 			if (grid[j][k] == '.')
 			{
-				if ((ft_check(grid, tetri[i], j, k, place)) == 0)
+				place[l] = k;
+				place[l + 1] = j;
+				if ((ft_check(grid, tetri[i], place, i)) == 0)
 				{
-					place[l] = k;
-					place[l + 1] = j;
 					//grid = place_tetri(grid, tetri[i], j, k, place);
 					printf("place[i] =  %d\n", place[i]);
 					printf("place[i+1] =  %d\n", place[i + 1]);
@@ -247,7 +218,7 @@ void	ft_placement(int nbpiece, char ***tetri)//algo
 					k = 0;
 					j = 0;
 				}
-				else if ((ft_check(grid, tetri[i], j, k, place)) == 1)
+				else if ((ft_check(grid, tetri[i], place, i)) == 1)
 						k++;
 			}
 			if (grid[j][k] != '.')
