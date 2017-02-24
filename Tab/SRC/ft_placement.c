@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:18:47 by jorobin           #+#    #+#             */
-/*   Updated: 2017/02/23 16:08:33 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/02/24 14:08:47 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,72 @@ int		ft_check(char **grid, char **tetri, int *place, int n)
 	int		i;
 	int		j;
 	int		k;
+	int		l;
+	int		let;
+	int		back;
+	int		space;
 
 	i = 0;
-	j = 0;
-	k = 0;
-	while ((j != place[n + 1] && k != place[n]) && (find_letter(tetri) != 'A'))
+	j = place[n + 1];
+	k = place[n];
+	n = 0;
+	back = 0;
+	let = 0;
+	space = 0;
+	l = 0;
+	while (grid[j] != NULL || n != 4)
 	{
 		while (grid[j][k] != '\n')
 		{
-			k++;
+			while (tetri[i][l] != '\n')
+			{
+				while (grid[j][k] == '.')
+				{
+					if (tetri[i][l] == '.')
+					{
+						if ((let == back && i != 1) || (let == 1 && back == 0))
+							l++;
+						else if ((let == 0 && back == 1) || (i == 1 && let == back))
+						{
+							n++;
+							k++;
+							l++;
+							while (tetri[i][l] == '.')
+							{
+								l++;
+								space++;
+							}
+						}
+					}
+					if (ft_isalpha(tetri[i][l]) == 1)
+					{
+						n++;
+						k++;
+						l++;
+					}
+				}
+				if (ft_isalpha(grid[j][k]) == 1)
+				{
+					if (tetri[i][l] == '.')
+					{
+						n++;
+						k++;
+						l++;
+					}
+					if (ft_isalpha(tetri[i][j]) == 1)
+						return(1);
+				}
+			}
+			k = k + space;
 		}
 		j++;
+		k = 0;
 	}
-	return(0);
+	if (n == 4)
+		return(0);
+	if (n != 4)
+		return(1);
+	return(1);
 }
 
 int		*find_x(char **str, int *decal)//trouve le xmin de chaque ligne
@@ -186,6 +239,9 @@ void	ft_placement(int nbpiece, char ***tetri)//algo
 	int		k;
 	int		l;
 	int		*place;
+	int		*decal;
+
+	decal = find_x(tetri[i], decal);
 
 	place = (int*)malloc(sizeof(int) * nbpiece + 1);
 	place = place_zero(place);
@@ -202,7 +258,7 @@ void	ft_placement(int nbpiece, char ***tetri)//algo
 		{
 			if (grid[j][k] == '.')
 			{
-				place[l] = k;
+				place[l] = k - decal[0];
 				place[l + 1] = j;
 				if ((ft_check(grid, tetri[i], place, i)) == 0)
 				{
