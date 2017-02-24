@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 17:29:42 by yarypert          #+#    #+#             */
-/*   Updated: 2017/02/16 16:12:10 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/02/24 14:10:10 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	**ymin_diff_zero(char **tab_tetri, int i, int j, int ymin)
 		{
 			while (tab_tetri[i][j] != '\n')
 			{
-				if (tab_tetri[i][j] == '#')
+				if (ft_isalpha(tab_tetri[i][j]) == 1)
 				{
 					tab_tetri[i][j] = '.';
 					tab_tetri[i - ymin][j] = '#';

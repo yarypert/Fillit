@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:18:47 by jorobin           #+#    #+#             */
-/*   Updated: 2017/02/24 14:08:47 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/02/24 18:50:49 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,79 +56,28 @@ char	find_letter(char **tetri)//renvoit la lettre de la piece
 }
 
 int		ft_check(char **grid, char **tetri, int *place, int n)
-{//fonction check si la place "int place" est valide
+{/*fonction check si la place "int place" est valide
 	//c'est a dire si on peut placer le tetri **tab_tetri a cet endroit
 	//si on ne peut pas on renvoit 1
 	//si on peut on renvoit 0
 	int		i;
 	int		j;
 	int		k;
-	int		l;
-	int		let;
-	int		back;
-	int		space;
-
+	
 	i = 0;
-	j = place[n + 1];
-	k = place[n];
-	n = 0;
-	back = 0;
-	let = 0;
-	space = 0;
-	l = 0;
+	j = place[n +;
+	k = 0;
+	while ((j != place[n + 1] && k != place[n]) &&(find_letter(tetri) != 'A'))
+	
 	while (grid[j] != NULL || n != 4)
 	{
 		while (grid[j][k] != '\n')
 		{
-			while (tetri[i][l] != '\n')
-			{
-				while (grid[j][k] == '.')
-				{
-					if (tetri[i][l] == '.')
-					{
-						if ((let == back && i != 1) || (let == 1 && back == 0))
-							l++;
-						else if ((let == 0 && back == 1) || (i == 1 && let == back))
-						{
-							n++;
-							k++;
-							l++;
-							while (tetri[i][l] == '.')
-							{
-								l++;
-								space++;
-							}
-						}
-					}
-					if (ft_isalpha(tetri[i][l]) == 1)
-					{
-						n++;
-						k++;
-						l++;
-					}
-				}
-				if (ft_isalpha(grid[j][k]) == 1)
-				{
-					if (tetri[i][l] == '.')
-					{
-						n++;
-						k++;
-						l++;
-					}
-					if (ft_isalpha(tetri[i][j]) == 1)
-						return(1);
-				}
-			}
-			k = k + space;
+		k++;
 		}
 		j++;
-		k = 0;
-	}
-	if (n == 4)
-		return(0);
-	if (n != 4)
-		return(1);
-	return(1);
+	}*/
+	return (1);
 }
 
 int		*find_x(char **str, int *decal)//trouve le xmin de chaque ligne
@@ -218,19 +167,6 @@ char	*str(char **map)//transforme un char ** en char *
 	return(str);
 }
 
-int		*place_zero(int *place)//met des 0 dans un char*
-{
-	int		i;
-
-	i = 0;
-	while (place[i] != '\0')
-	{
-		place[i] = 0;
-		i++;
-	}
-	return (place);
-}
-
 void	ft_placement(int nbpiece, char ***tetri)//algo
 {
 	char	**grid = NULL;
@@ -238,54 +174,66 @@ void	ft_placement(int nbpiece, char ***tetri)//algo
 	int		j;
 	int		k;
 	int		l;
-	int		*place;
-	int		*decal;
-
-	decal = find_x(tetri[i], decal);
+	int		n;
+	int		*place;// tableau d'int contenant les position max testees de chaque piece(positions invalides)
 
 	place = (int*)malloc(sizeof(int) * nbpiece + 1);
-	place = place_zero(place);
 	grid = create_grid(nbpiece);
 	printf("la map cree dans ft_placement est: \n%s%s%s%s%s\n", grid[0], grid[1], grid[2], grid[3], grid[4]);
-	i = 0;
-	j = 0;
-	k = 0;
-	l = 0;
-
+	i = 0;// indique le numero du tetri(quel tetri on est)
+	j = 0;// y de la map
+	k = 0;// x de la map
+	l = 0;// pour avancer dans le tableau d'int de 2 en 2 lole
+	n = 1;// nb d'appel du grid 1_up
+ft_putchar('a');
 	while (tetri[i] != NULL)
 	{
+ft_putchar('b');
 		while (grid[j] && tetri[i])
 		{
-			if (grid[j][k] == '.')
+			while (grid[j][k] != '\n')
 			{
-				place[l] = k - decal[0];
-				place[l + 1] = j;
-				if ((ft_check(grid, tetri[i], place, i)) == 0)
+		ft_putchar('c');
+				if (grid[j][k] == '.')
 				{
-					//grid = place_tetri(grid, tetri[i], j, k, place);
-					printf("place[i] =  %d\n", place[i]);
-					printf("place[i+1] =  %d\n", place[i + 1]);
-					printf("i =  %d\n", i);
-					printf("l =  %d\n", l);
-					printf("j =  %d\n", j);
-					printf("k =  %d\n", k);
-					l = l + 2;
-					i++;
-					k = 0;
-					j = 0;
+				ft_putchar('d');
+					place[l] = k;
+					place[l + 1] = j;
+					if ((ft_check(grid, tetri[i], place, i)) == 0)
+					{
+					ft_putchar('e');
+						//grid = place_tetri(grid, tetri[i], j, k, place);
+						printf("place[i] =  %d\n", place[i]);
+						printf("place[i+1] =  %d\n", place[i + 1]);
+						printf("i =  %d\n", i);
+						printf("l =  %d\n", l);
+						printf("j =  %d\n", j);
+						printf("k =  %d\n", k);
+						l = l + 2;
+						i++;
+						k = 0;
+						j = 0;
+					}
+					else if ((ft_check(grid, tetri[i], place, i)) == 1){
+						ft_putchar('f');
+							k++;}
 				}
-				else if ((ft_check(grid, tetri[i], place, i)) == 1)
-						k++;
+				else
+					k++;
 			}
-			if (grid[j][k] != '.')
-				k++;
+			j++;
+			k = 0;
 		}
-		//grid = clr_piece;
 		if (i == 0)
-			//grid_1_up();
+		{
+			grid_1_up(nbpiece,n);
+			printf("grid apres le 1up :\n%s\n", str(grid));
+			n++;
+		}
 		if (i != 0)
 			i--;
 	}
+ft_putchar('g');
 }
 
 	int		main(void)//main de test pour strxlen (strlen avec un char**)

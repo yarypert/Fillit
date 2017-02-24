@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 17:29:49 by yarypert          #+#    #+#             */
-/*   Updated: 2017/02/13 17:41:10 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/02/24 16:56:54 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int		ft_fillit(char **argv)
 		var.dest++;
 	}
 	ft_flag_err(var.flag, var.ret);
-	print_tab(var.tab_tetri, var.piece_nb);
 	ft_close(var.fd);
 	return (0);
 }

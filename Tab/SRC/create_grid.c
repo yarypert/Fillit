@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 15:56:38 by yarypert          #+#    #+#             */
-/*   Updated: 2017/02/13 17:04:55 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/02/24 16:52:09 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		get_val(int piece)
 		return (-1);
 }
 
-char	**grid_1_up(int piece)
+char	**grid_1_up(int piece, int n)
 {
 	int		val;
 	int		j;
@@ -46,7 +46,7 @@ char	**grid_1_up(int piece)
 	size_t	size;
 	char	**tab;
 
-	val = get_val(piece) + 1;
+	val = get_val(piece) + n;
 	size = ((3 + val) * (2 + val));
 	j = 1;
 	grid = malloc((sizeof(char) * (size)));
@@ -61,7 +61,6 @@ char	**grid_1_up(int piece)
 	tab = grid_to_tab(grid);
 	return (tab);
 }
-
 
 char	**create_grid(int piece)
 {

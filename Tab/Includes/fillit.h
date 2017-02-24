@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 16:21:55 by yarypert          #+#    #+#             */
-/*   Updated: 2017/02/17 11:01:15 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/02/24 16:52:28 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int			check_final(char *str);
 int			ft_fillit(char **argv);
 
 char		**move_tetri(char **tab_tetri);
-char		**grid_1_up(int piece);
+char		**grid_1_up(int piece, int n);
 char		**create_grid(int piece);
 char		**str_to_tab(char *str);
 char		**grid_to_tab(char *str);
