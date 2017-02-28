@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 16:21:55 by yarypert          #+#    #+#             */
-/*   Updated: 2017/02/24 16:52:28 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/02/28 13:26:02 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char		**grid_1_up(int piece, int n);
 char		**create_grid(int piece);
 char		**str_to_tab(char *str);
 char		**grid_to_tab(char *str);
-char		**ft_replace_char(char **s, char find, char repl);
+char		**ft_replace_char(char **s, int numtetri);
 
 void		ft_print_int_tab(int **coord, int piece_nb);
 void		print_2dim_tab(char **tab_tetri);
