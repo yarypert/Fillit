@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 17:29:49 by yarypert          #+#    #+#             */
-/*   Updated: 2017/02/25 16:31:19 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/02/28 13:26:06 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ void	ft_nouveau_placement(char ***tetri)
 {
 	char **tab_solved;
 	int		square_size;
+	int		i;
+	int		j;
+	int		k;
 
 	tab_solved = NULL;
 	square_size = 5;
@@ -85,6 +88,32 @@ void	ft_nouveau_placement(char ***tetri)
 	//si la fontion renvoie 1 placer, changer en lettre, et passer a la piece suivante
 	//si elle renvoie zero  position_de_x++, si on peut plus avancer, passer a la piece d'avant,
 	//si elle est NULL on free tab_solved, on l'agrandie (square_size ++) et on recreee le tout
+	while (tetri[i] != NULL)
+	{
+		while (tab_solved[j] != NULL)
+		{
+			while (tab_solved[j][k] != '\n')
+			{
+				while (check_place(j, k, tetri[i]) != 1)//si le placement est possible
+				{
+					k++;
+				}
+				ft_replace_char(tetri[i], i);//on remplace les # par des lettres
+				//on place
+				i++;
+				j = 0;
+				k = 0;
+			}
+			k = 0;
+			j++;
+		}
+		if (i != 0)
+			i--;
+		else if (i == 0)
+			square_size++;
+		j = 0;
+		k = 0;
+	}
 	ft_putdoubletab(tab_solved);
 	ft_putstr("\ncrokzizi\n");
 }

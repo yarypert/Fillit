@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 17:29:42 by yarypert          #+#    #+#             */
-/*   Updated: 2017/02/25 14:56:26 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/03/01 14:01:53 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,74 +29,63 @@ void	ft_putdoubletab(char **tab_tetri)
 	}
 }
 */
-char	**ymin_diff_zero(char **tab_tetri, int i, int j, int ymin)
+char	*ymin_diff_zero(char *tetri, int i, int ymin)
 {
+	
 	if (ymin != 0)
 	{
-		while (tab_tetri[i] != NULL)
+		while (tetri[i] != '\0')
 		{
-			while (tab_tetri[i][j] != '\n')
+			if (tetri[i] == '#')
 			{
-				if (tab_tetri[i][j] == '#')
-				{
-					tab_tetri[i][j] = '.';
-					tab_tetri[i - ymin][j] = '#';
-				}
-				j++;
+				tetri[i] = '.';
+				tetri[i - (5 * ymin)] = '#';
 			}
-			j = 0;
 			i++;
 		}
-		i = 0;
 	}
-	return (tab_tetri);
+	return (tetri);
 }
 
 
-char	**xmin_diff_zero(char **tab_tetri, int i, int j, int xmin)
+char	*xmin_diff_zero(char *tetri, int i, int xmin)
 {
 
 if (xmin != 0)
 	{
-		while (tab_tetri[i] != NULL)
+		while (tetri[i] != '\0')
 		{
-			while (tab_tetri[i][j] != '\n')
+			if (tetri[i] == '#')
 			{
-				if (tab_tetri[i][j] == '#')
-				{
-					tab_tetri[i][j] = '.';
-					tab_tetri[i][j - xmin] = '#';
-				}
-				j++;
+				tetri[i] = '.';
+				tetri[i - xmin] = '#';
 			}
-			j = 0;
 			i++;
 		}
-		i = 0;
 	}
-	return (tab_tetri);
+	return (tetri);
 }
 
 
 
-char	**move_tetri(char **tab_tetri)
+char	*move_tetri_char(char *tab_tetri)
 {
 	int		xmin;
 	int		ymin;
 	int		i;
 	int		j;
 
-	xmin = find_x_min(tab_tetri);
-	ymin = find_y_min(tab_tetri);
+	xmin = find_x_min_char(tab_tetri);
+	ymin = find_y_min_char(tab_tetri);
 	i = 0;
 	j = 0;
-	tab_tetri = xmin_diff_zero(tab_tetri, i, j, xmin);
-	tab_tetri = ymin_diff_zero(tab_tetri, i, j, ymin);
+	tab_tetri = xmin_diff_zero(tab_tetri, i, xmin);
+	tab_tetri = ymin_diff_zero(tab_tetri, i, ymin);
 
 	return (tab_tetri);
 }
 
-int		find_x_min(char		**tab_tetri)
+int		find_x_min_char(char	*tab_tetri)
 {
 	int		i;
 	int		j;
@@ -106,25 +95,27 @@ int		find_x_min(char		**tab_tetri)
 	xmin = 0;
 	i = 0;
 	count = 0;
-	while (tab_tetri[i] != NULL)
+	j = 0;
+	while (tab_tetri[i] != '\0')
 	{
-		j = 0;
-		while (j < 4)
+		while (tab_tetri[i] != '\n')
 		{
-			if (tab_tetri[i][j] == '#')
+			if (tab_tetri[i] == '#')
 			{
 				if (count == 0 || j <= xmin)
 					xmin = j;
 				count++;
 			}
 			j++;
+			i++;
 		}
+		j = 0;
 		i++;
 	}
 	return (xmin);
 }
 
-int		find_y_min(char		**tab_tetri)
+int		find_y_min_char(char	*tab_tetri)
 {
 	int		i;
 	int		j;
@@ -134,38 +125,22 @@ int		find_y_min(char		**tab_tetri)
 	ymin = 0;
 	i = 0;
 	count = 0;
-	while (tab_tetri[i] != NULL)
+	j = 0;
+	while (tab_tetri[i] != '\0')
 	{
-		j = 0;
-		while (j < 4)
+		while (tab_tetri[i] != '\n')
 		{
-			if (tab_tetri[i][j] == '#')
+			if (tab_tetri[i] == '#')
 			{
-				if (count == 0 || i <= ymin)
-					ymin = i;
+				if (count == 0 || j <= ymin)
+					ymin = j;
 				count++;
 			}
-			j++;
+			i++;
 		}
+		j++;
 		i++;
 	}
 	return (ymin);
 }
-/*
-int main()
-{
-	char	*test;
-	char **tmp;
 
-	tmp = NULL;
-	test = (char *)malloc(sizeof(char) * 24 + 1);
-	test = "....\ni....\ni.##.\ni....\ni\0";
-	tmp = ft_strsplit(test, 'i');
-	if (tmp)
-	{
-		ft_putendl("split reussi");
-	}
-	move_tetri(tmp);
-	return 0;
-}
-*/
