@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 16:21:55 by yarypert          #+#    #+#             */
-/*   Updated: 2017/02/28 13:26:02 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/03/01 12:16:22 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,21 @@ typedef	struct	s_var
 	char	dest;
 }				t_var;
 
+int			ft_strxlen(char **str);
 int			find_x_min(char **tab_tetri);
+int			find_x_min_char(char *tab_tetri);
 int			find_y_min(char **tab_tetri);
+int			find_y_min_char(char *tab_tetri);
+int			find_len(char *str);
 int			check_char(char *str);
 int			check_links(char *str);
 int			check_lines(char *str);
 int			check_final(char *str);
 int			ft_fillit(char **argv);
 
+char		*double_tab_to_str(char **map);
 char		**move_tetri(char **tab_tetri);
+char		*move_tetri_char(char *tab_tetri);
 char		**grid_1_up(int piece, int n);
 char		**create_grid(int piece);
 char		**str_to_tab(char *str);
