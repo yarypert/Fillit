@@ -30,9 +30,14 @@
 
 int		main(int argc, char **argv)
 {
+	char *tetris;
+	char *final_grid;
+
 	if (argc == 2)
-		ft_fillit(argv);
+	{
+		tetris = read_file(argv[1]);
+	}
 	else
-		ft_error("wrong number of arguments");
-	return(1);
+		ft_error("error");
+	return(0);
 }

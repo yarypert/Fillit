@@ -27,6 +27,7 @@ char	**str_to_tab(char *str)
 	}
 	return (tetri);
 }
+
 char	**grid_to_tab(char *str)
 {
 	char	**tetri;
@@ -41,29 +42,4 @@ char	**grid_to_tab(char *str)
 		i++;
 	}
 	return (tetri);
-}
-
-void	print_tab(char ***tab, int piece_nb)
-{
-	int i;
-	int j;
-	int k;
-
-	i = 0;
-	while (i < piece_nb)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			k = 0;
-			while (k < 5)
-			{
-				ft_putchar(tab[i][j][k]);
-				k++;
-			}
-			j++;
-		}
-		ft_putchar('\n');
-		i++;
-	}
 }

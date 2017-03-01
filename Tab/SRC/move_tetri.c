@@ -37,7 +37,7 @@ char	**ymin_diff_zero(char **tab_tetri, int i, int j, int ymin)
 		{
 			while (tab_tetri[i][j] != '\n')
 			{
-				if (ft_isalpha(tab_tetri[i][j]) == 1)
+				if (tab_tetri[i][j] == '#')
 				{
 					tab_tetri[i][j] = '.';
 					tab_tetri[i - ymin][j] = '#';

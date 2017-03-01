@@ -16,6 +16,7 @@
 
 static void	ft_put_triple_tab(char ***tab)
 {
+//segfault a la fin de la fonction
 	int i;
 	int j;
 	int k;
@@ -75,7 +76,7 @@ void	ft_nouveau_placement(char ***tetri)
 	int		square_size;
 
 	tab_solved = NULL;
-	square_size = 2;
+	square_size = 5;
 	tab_solved = create_tab_solved(square_size);
 	//tant que la map != NULL
 	//la parcourir
@@ -119,15 +120,11 @@ int		ft_fillit(char **argv)
 		var.piece_nb++;
 		var.dest++;
 	}
-	ft_putendl("tableau recuperer ! :");
-	ft_put_triple_tab(var.tab_tetri);
 	while (i < var.piece_nb)
 	{
-		move_tetri(var.tab_tetri[i]);
+		var.tab_tetri[i] = move_tetri(var.tab_tetri[i]);
 		i++;
 	}
-	ft_putendl("tetriminos move ! :");
-		ft_put_triple_tab(var.tab_tetri);
 	ft_nouveau_placement(var.tab_tetri);
 	ft_flag_err(var.flag, var.ret);
 	ft_close(var.fd);

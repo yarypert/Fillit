@@ -3,7 +3,7 @@
 
 void	print_2dim_tab(char **tab_tetri)
 {
-//affiche uniquement un tetri
+	//affiche uniquement un tetri
 	int i;
 	int j;
 
@@ -23,7 +23,7 @@ void	print_2dim_tab(char **tab_tetri)
 
 void	ft_putdoubletab(char **tab_tetri)
 {
-//affiche nimporte quel tableau
+	//affiche nimporte quel tableau
 	int t1;
 	int t2;
 
@@ -36,8 +36,33 @@ void	ft_putdoubletab(char **tab_tetri)
 			ft_putchar(tab_tetri[t1][t2]);
 			t2++;
 		}
-			ft_putchar(tab_tetri[t1][t2]);
+		ft_putchar(tab_tetri[t1][t2]);
 		t2 = 0;
 		t1++;
+	}
+}
+
+void	print_tab(char ***tab, int piece_nb)
+{
+	int i;
+	int j;
+	int k;
+
+	i = 0;
+	while (i < piece_nb)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			k =0;
+			while (k < 5)
+			{
+				ft_putchar(tab[i][j][k]);
+				k++;
+			}
+			j++;
+		}
+		ft_putchar('\n');
+		i++;
 	}
 }
