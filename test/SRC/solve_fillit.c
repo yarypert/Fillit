@@ -2,17 +2,25 @@
 
 char	*solve(char **pieces)
 {
+	ft_putendl("fonction solve");
 	int		size;
 	int		i;
 	char	*result;
+
+	ft_putendl("fonction size_min");
 	size = size_min(pieces);
+	ft_putendl("fonction size_min");
 	result = NULL;
 	while (!result)
 	{
+		ft_putendl("fonction create_grid");
 		result = create_grid(size);
+		ft_putendl("fin create_grid");
 		if (!result)
 			freeall(NULL, pieces, -1);
+		ft_putendl("fonction best_position");
 		result = best_position(result, pieces, 0, size);
+		ft_putendl("fin best_position");
 		size++;
 	}
 	i = 0;
@@ -68,6 +76,11 @@ char	*best_position(char *result, char **pieces, int i, int size)
 			{
 				save = best_position(place_pieces(result, pieces[i], y, size),
 					pieces, i + 1, size);
+				/*if (save != NULL)
+				{
+					ft_putendl("tableau final");
+					ft_putendl(save);
+				}*/
 			}
 			if (save)
 				return (save);
@@ -97,6 +110,13 @@ char	*place_pieces(char *result, char *piece, int index_result, int size)
 	int		i;
 	int		tmp_index;
 
+
+	/*ft_putstr("function place_pieces\n result/ \n");
+	ft_putendl(result);
+	ft_putstr("piece/ \n");
+	ft_putendl(piece);
+	ft_putnbr(ft_strlen(piece));
+	ft_putchar('\n');*/
 	tmp_index = index_result;
 	i = 0;
 	while (piece[i])

@@ -21,6 +21,7 @@ int main(int argc, char **argv)
 		test = move_all_tetri(test, count_piece(ft_strlen(tetris)));// je les move en utilisant ta fonction et je cnage le charactere.
 		ft_putendl("appel de la fonction solve");
 		solved = solve(test);// je resous
+		ft_putendl("TABLEAU FINAL !");
 		ft_putstr(solved);//je print le resultat
 		return(0);
 	}
