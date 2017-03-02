@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 16:09:30 by jorobin           #+#    #+#             */
-/*   Updated: 2017/03/01 14:01:47 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/03/02 15:02:46 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,15 @@ char	*ft_tetri_decal(char *tetri_before)
 	flag = 0;
 	count = 0;
 
+	ft_putendl(tetri_before);
+	ft_putendl("appel de la fonction move_tetri_char");
 	tetri_before = move_tetri_char(tetri_before);
+	ft_putendl(tetri_before);
+	ft_putendl("fin de la fonction move_tetri_char");
 
 	tetri_next = (char*)malloc(sizeof(char) * find_len(tetri_before) + 1);
 
-	while (count < 3)
+	while (count <= 3)
 	{
 		while (tetri_before[i] != '\n')
 		{
@@ -46,7 +50,7 @@ char	*ft_tetri_decal(char *tetri_before)
 			{
 				if (flag == 0)
 				{
-					tetri_next[j] = tetri_before[i];
+					tetri_next[j] = ' ';
 					j++;
 				}
 			}
@@ -60,6 +64,10 @@ char	*ft_tetri_decal(char *tetri_before)
 		}
 		i++;
 	}
+	ft_putendl("fin de la boucle ft_tetri_decal");
+	tetri_next[j] = '\0';
+	ft_putendl(tetri_next);
+	ft_putendl("return tetri_next");
 	return(tetri_next);
 }
 
@@ -74,7 +82,7 @@ int		find_len(char *str)
 	taille = 0;
 	flag = 0;
 	count = 0;
-	while (count < 3)
+	while (count < 4)
 	{
 		while (str[i] != '\n')
 		{
@@ -98,6 +106,9 @@ int		find_len(char *str)
 		}
 		i++;
 	}
+	ft_putstr("taille = ");
+	ft_putnbr(taille);
+	ft_putchar('\n');
 	return(taille);
 }
 

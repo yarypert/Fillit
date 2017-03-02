@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 16:21:55 by yarypert          #+#    #+#             */
-/*   Updated: 2017/02/24 16:52:28 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/03/02 14:41:45 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <unistd.h>
-# include "../libft/libft.h"
+# include "./libft.h"
 # define BUFF_SIZE 21
 
 char	**str_to_tab(char *str);
