@@ -74,6 +74,7 @@ char	*best_position(char *result, char **pieces, int i, int size)
 		{
 			if (can_be_placed(result, y, pieces[i], size))
 			{
+				ft_putendl(pieces[i]);
 				save = best_position(place_pieces(result, pieces[i], y, size),
 					pieces, i + 1, size);
 				/*if (save != NULL)
