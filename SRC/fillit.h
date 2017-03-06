@@ -21,6 +21,7 @@
 # define BUFF_SIZE 21
 
 char	**str_to_tab(char *str);
+char	**str_to_tab_2(int len, char *str, char **tab);
 char	**move_all_tetri(char **tab, int piece_nb);
 char	*ft_strappend(char *str1,char *str2);
 char	*read_tetri(char *file);
