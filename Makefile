@@ -6,7 +6,7 @@
 #    By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/06 00:55:05 by yarypert          #+#    #+#              #
-#    Updated: 2017/02/13 16:59:31 by yarypert         ###   ########.fr        #
+#    Updated: 2017/03/07 14:29:48 by jorobin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ all: $(NAME)
 
 $(NAME):
 	@make re -C ./libft
-	@gcc -c $(SRC) -I $(INC_PATH)
+	@gcc -c $(FLAG) $(SRC) -I $(INC_PATH)
 	@gcc $(OBJ) ./libft/libft.a -I $(INC_PATH) -o $(NAME)
 	@mkdir tmp
 	@mv $(OBJ) tmp
