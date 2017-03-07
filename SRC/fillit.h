@@ -57,7 +57,7 @@ char			*create_grid(int size);
 char			*ft_replace_char(char *str, char c);
 
 int				count_piece(int len);
-int				find_len(char *str);
+int				find_len(char *str, t_decal *td);
 int				find_x_min_char(char *tab_tetri);
 int				find_y_min_char(char *tab_tetri);
 int				check_char(char *str);
@@ -67,7 +67,11 @@ int				check_final(char **str, int piece_nb);
 int				can_be_placed(char *result, int i_res, char *piece, int size);
 int				size_min(char **pieces);
 
+void			is_diese(t_decal *td, char *tetri_before);
+void			flag_zero(t_decal *td);
 void			ft_error(char *str);
 void			freeall(char *file, char **pieces, int i);
+void			find_len_2(char *str, t_decal *td);
+void			ft_tetri_decal_2(char *tetri_before, t_decal *td);
 
 #endif

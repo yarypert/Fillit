@@ -15,12 +15,10 @@
 char	**str_to_tab(char *str)
 {
 	char	**tab;
-	int		i;
 	int		j;
 	int		len;
 
 	j = 0;
-	i = 0;
 	len = ft_strlen(str);
 	if (str[len - 2] != '#' && str[len - 2] != '.')
 		ft_error("error");
