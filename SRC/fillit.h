@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 16:21:55 by yarypert          #+#    #+#             */
-/*   Updated: 2017/03/02 14:41:45 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/03/07 14:23:59 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 char	**str_to_tab(char *str);
 char	**str_to_tab_2(int len, char *str, char **tab);
 char	**move_all_tetri(char **tab, int piece_nb);
-char	*ft_strappend(char *str1,char *str2);
+char	*ft_strappend(char *str1, char *str2);
 char	*read_tetri(char *file);
 char	*ft_tetri_decal(char *tetri_before);
 char	*ymin_diff_zero(char *tetri, int i, int ymin);
@@ -32,7 +32,7 @@ char	*move_tetri_char(char *tab_tetri);
 char	*solve(char **pieces);
 char	*best_position(char *result, char **pieces, int i, int size);
 char	*remove_piece(char *result, char c);
-char	*place_pieces(char *result, char *piece, int index_result,int size);
+char	*place_pieces(char *result, char *piece, int index_result, int size);
 char	*create_grid(int size);
 char	*ft_replace_char(char *str, char c);
 
