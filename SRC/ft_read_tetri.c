@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 14:25:12 by jorobin           #+#    #+#             */
-/*   Updated: 2017/03/07 14:27:28 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/03/07 14:38:18 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strappend(char *str1, char *str2)
 	return (NULL);
 }
 
-char	*read_tetri(char	*file)
+char	*read_tetri(char *file)
 {
 	int		fd;
 	int		ret;

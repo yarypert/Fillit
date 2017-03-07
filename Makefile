@@ -6,13 +6,13 @@
 #    By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/06 00:55:05 by yarypert          #+#    #+#              #
-#    Updated: 2017/03/07 14:29:48 by jorobin          ###   ########.fr        #
+#    Updated: 2017/03/07 15:46:16 by yarypert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-FLAG = -Wall -Wextra -Werror -gdb
+FLAG = -Wall -Wextra -Werror
 
 SRC_PATH = ./SRC/
 
@@ -41,7 +41,7 @@ Skn = \0033[48;5;216m
 all: $(NAME)
 
 $(NAME):
-	@make re -C ./libft
+	@make -C ./libft
 	@gcc -c $(FLAG) $(SRC) -I $(INC_PATH)
 	@gcc $(OBJ) ./libft/libft.a -I $(INC_PATH) -o $(NAME)
 	@mkdir tmp
@@ -73,12 +73,15 @@ $(NAME):
 
 .PHONY: clean
 clean :
+	@make clean -C ./libft/
 	@rm -Rf tmp
-	@echo "$(Grn2)[✓] $(Wht2) Removed OBJ tmp file" $(NAME)
+	@echo "$(Grn2)[✓] $(Wht2) Removed OBJ" $(NAME)
 
 
 fclean: clean
+	make fclean -C ./libft/
 	@rm -Rf $(NAME)
 	@echo "$(Grn2)[✓] $(Wht2) Removed executable" $(NAME)
 
 re : fclean all
+	@make re -C ./libft/

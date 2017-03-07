@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   solve_fillit.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/07 14:52:52 by yarypert          #+#    #+#             */
+/*   Updated: 2017/03/07 14:59:07 by yarypert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
 char	*solve(char **pieces)
@@ -23,30 +35,30 @@ char	*solve(char **pieces)
 	return (result);
 }
 
-int		can_be_placed(char *result, int index_result, char *piece, int size)
+int		can_be_placed(char *result, int i_res, char *piece, int size)
 {
 	int		i;
 	int		tmp_index;
 
-	tmp_index = index_result;
+	tmp_index = i_res;
 	i = 0;
 	while (piece[i])
 	{
-		if (size * (size + 1) < index_result)
+		if (size * (size + 1) < i_res)
 			return (0);
 		if (ft_isalpha(piece[i]))
 		{
-			if (result[index_result] != '.')
+			if (result[i_res] != '.')
 				return (0);
-			index_result++;
+			i_res++;
 		}
 		else if (piece[i] == '\n')
 		{
-			index_result = tmp_index + size + 1;
-			tmp_index = index_result;
+			i_res = tmp_index + size + 1;
+			tmp_index = i_res;
 		}
 		else if (piece[i] == ' ')
-			index_result++;
+			i_res++;
 		i++;
 	}
 	return (1);
@@ -93,27 +105,27 @@ char	*remove_piece(char *result, char c)
 	return (result);
 }
 
-char	*place_pieces(char *result, char *piece, int index_result, int size)
+char	*place_pieces(char *result, char *piece, int i_res, int size)
 {
 	int		i;
 	int		tmp_index;
 
-	tmp_index = index_result;
+	tmp_index = i_res;
 	i = 0;
 	while (piece[i])
 	{
 		if (ft_isalpha(piece[i]))
 		{
-			result[index_result] = piece[i];
-			index_result++;
+			result[i_res] = piece[i];
+			i_res++;
 		}
 		else if (piece[i] == '\n')
 		{
-			index_result = tmp_index + size + 1;
-			tmp_index = index_result;
+			i_res = tmp_index + size + 1;
+			tmp_index = i_res;
 		}
 		else if (piece[i] == ' ')
-			index_result++;
+			i_res++;
 		i++;
 	}
 	return (result);

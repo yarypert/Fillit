@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 17:21:44 by yarypert          #+#    #+#             */
-/*   Updated: 2017/02/01 22:32:10 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/03/07 14:50:29 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int		check_char(char *str)
 	int i;
 
 	i = 0;
-
 	if (str[4] != '\n' || str[9] != '\n' || str[14] != '\n' || str[19] != '\n')
 		return (1);
 	while (i < 20)
@@ -78,7 +77,7 @@ int		check_lines(char *str)
 	return ((count_hashtags == 4 && count_char == 16 && count_bn == 4) ? 0 : 1);
 }
 
-int		check_final(char **str,int piece_nb)
+int		check_final(char **str, int piece_nb)
 {
 	int i;
 	int a;
@@ -91,7 +90,6 @@ int		check_final(char **str,int piece_nb)
 		a = check_char(str[i]);
 		b = check_links(str[i]);
 		c = check_lines(str[i]);
-
 		if (a != 0 || b != 0 || c != 0)
 			return (1);
 		i++;

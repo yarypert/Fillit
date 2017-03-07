@@ -6,7 +6,7 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 16:09:30 by jorobin           #+#    #+#             */
-/*   Updated: 2017/03/02 15:02:46 by jorobin          ###   ########.fr       */
+/*   Updated: 2017/03/07 15:26:03 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,66 +14,61 @@
 
 char	*ft_tetri_decal(char *tetri_before)
 {
-	int		i;
-	int		j;
-	int		taille;
-	int		flag;
-	int		count;
-	char	*tetri_next;
+	t_decal		td;
 
-	i = 0;
-	j = 0;
-	taille = 0;
-	flag = 0;
-	count = 0;
-	tetri_next = NULL;
+	td.i = 0;
+	td.j = 0;
+	td.taille = 0;
+	td.flag = 0;
+	td.count = 0;
+	td.tetri_next = NULL;
 	tetri_before = move_tetri_char(tetri_before);
-	tetri_next = (char*)malloc(sizeof(char) * find_len(tetri_before) + 1);
+	td.tetri_next = (char*)malloc(sizeof(char) * find_len(tetri_before) + 1);
 
-	while (count <= 3)
+	while (td.count <= 3)
 	{
-		while (tetri_before[i] != '\n')
+		while (tetri_before[td.i] != '\n')
 		{
-			if (tetri_before[i] == '#')
+			if (tetri_before[td.i] == '#')
 			{
-				tetri_next[j] = tetri_before[i];
-				j++;
-				flag = 1;
-				count++;
+				td.tetri_next[td.j] = tetri_before[td.i];
+				td.j++;
+				td.flag = 1;
+				td.count++;
 			}
-			if (tetri_before[i] == '.')
+			if (tetri_before[td.i] == '.')
 			{
-				if (flag == 0)
+				if (td.flag == 0)
 				{
-					tetri_next[j] = ' ';
-					j++;
+					td.tetri_next[td.j] = ' ';
+					td.j++;
 				}
 			}
-			i++;
+			td.i++;
 		}
-		if (flag == 1)
+		if (td.flag == 1)
 		{
-			flag = 0;
-			tetri_next[j] = tetri_before[i];
-			j++;
+			td.flag = 0;
+			td.tetri_next[td.j] = tetri_before[td.i];
+			td.j++;
 		}
-		i++;
+		td.i++;
 	}
-	tetri_next[j] = '\0';
-	return(tetri_next);
+	td.tetri_next[td.j] = '\0';
+	return(td.tetri_next);
 }
 
 int		find_len(char *str)
 {
 	int		i;
-	int		taille;
 	int		flag;
-	int count;
+	int		count;
+	int		taille;
 
 	i = 0;
-	taille = 0;
 	flag = 0;
 	count = 0;
+	taille = 0;
 	while (count < 4)
 	{
 		while (str[i] != '\n')
@@ -100,40 +95,3 @@ int		find_len(char *str)
 	}
 	return(taille);
 }
-
-/*
-int		main()
-{
-char	*test;
-
-	test = (char*)malloc(sizeof(char) * 19 + 1);
-
-	test[0] = '.';
-	test[1] = '#';
-	test[2] = '.';
-	test[3] = '.';
-	test[4] = '\n';
-	test[5] = '.';
-	test[6] = '#';
-	test[7] = '.';
-	test[8] = '.';
-	test[9] = '\n';
-	test[10] = '.';
-	test[11] = '#';
-	test[12] = '#';
-	test[13] = '.';
-	test[14] = '\n';
-	test[15] = '.';
-	test[16] = '.';
-	test[17] = '.';
-	test[18] = '.';
-	test[19] = '\n';
-	test[20] = '\0';
-	printf("avant :\n%s\n", test);
-
-	ft_putchar('\n');
-	ft_putendl("apres");
-	ft_putstr(ft_tetri_decal(test));
-	return 0;
-	return(0);
-}*/
