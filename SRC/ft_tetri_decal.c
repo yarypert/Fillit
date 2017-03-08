@@ -6,29 +6,29 @@
 /*   By: jorobin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 16:09:30 by jorobin           #+#    #+#             */
-/*   Updated: 2017/03/07 15:26:03 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/03/08 13:16:52 by yarypert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	*ft_tetri_decal(char *tetri_before)
+char	*ft_tetri_decal(char *tetri_bef)
 {
 	t_decal		td;
 
 	td.tetri_next = NULL;
-	tetri_before = move_tetri_char(tetri_before);
-	td.tetri_next = (char*)malloc(sizeof(char) * find_len(tetri_before, &td) + 1);
+	tetri_bef = move_tetri_char(tetri_bef);
+	td.tetri_next = (char*)malloc(sizeof(char) * find_len(tetri_bef, &td) + 1);
 	td.i = 0;
 	td.j = 0;
 	td.taille = 0;
 	td.flag = 0;
 	td.count = 0;
-	ft_tetri_decal_2(tetri_before, &td);
-	return(td.tetri_next);
+	ft_tetri_decal_2(tetri_bef, &td);
+	return (td.tetri_next);
 }
 
-void		is_diese(t_decal *td, char *tetri_before)
+void	is_diese(t_decal *td, char *tetri_before)
 {
 	td->tetri_next[td->j] = tetri_before[td->i];
 	td->j++;
@@ -64,42 +64,4 @@ void	ft_tetri_decal_2(char *tetri_before, t_decal *td)
 		td->i++;
 	}
 	td->tetri_next[td->j] = '\0';
-}
-
-int		find_len(char *str, t_decal *td)
-{
-	td->i = 0;
-	td->flag = 0;
-	td->count = 0;
-	td->taille = 0;
-	while (td->count < 4)
-	{
-		find_len_2(str, td);
-	}
-	return(td->taille);
-}
-
-void	find_len_2(char *str, t_decal *td)
-{
-	while (str[td->i] != '\n')
-	{
-		if (str[td->i] == '#')
-		{
-			td->taille++;
-			td->flag = 1;
-			td->count++;
-		}
-		if (str[td->i] == '.')
-		{
-			if (td->flag == 0)
-				td->taille++;
-		}
-		td->i++;
-	}
-	if (td->flag == 1)
-	{
-		td->taille++;
-		td->flag = 0;
-	}
-	td->i++;
 }
