@@ -6,7 +6,7 @@
 /*   By: yarypert <yarypert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 16:21:55 by yarypert          #+#    #+#             */
-/*   Updated: 2017/03/07 15:20:28 by yarypert         ###   ########.fr       */
+/*   Updated: 2017/03/08 12:42:13 by jorobin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char			**move_all_tetri(char **tab, int piece_nb);
 
 char			*ft_strappend(char *str1, char *str2);
 char			*read_tetri(char *file);
-char			*ft_tetri_decal(char *tetri_before);
+char			*ft_tetri_decal(char *t_before);
 char			*ymin_diff_zero(char *tetri, int i, int ymin);
 char			*xmin_diff_zero(char *tetri, int i, int xmin);
 char			*move_tetri_char(char *tab_tetri);
